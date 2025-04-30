@@ -1,0 +1,37 @@
+@import url('../pages/ws_frame_setup.css');
+
+main
+{
+    overflow-y: scroll;
+}
+
+.product-card
+{    
+    height: 210px;
+    width: 210px;
+    cursor: pointer;
+    transition: background-color .15s ease-in-out;
+}
+
+.product-card:hover
+{
+    background-color: var(--secondary-color);
+}
+
+.product-card > .card-img-top 
+{
+    height: 150px;
+    width: 150px;
+}
+
+.temp-image-holder > img
+{
+    height: 150px;
+    width: 150px;
+}
+
+.view-product-image-holder > img, .recover-product-image-holder > img
+{ 
+    height: 150px;
+    width: 150px;
+}

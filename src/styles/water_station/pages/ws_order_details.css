@@ -1,0 +1,73 @@
+@import url('../pages/ws_frame_setup.css');
+
+.error-page, .error-page *
+{
+    background-color: var(--danger-light-4) !important;
+    color: var(--danger-dark) !important;
+}
+
+.section
+{
+    flex: 1;
+}
+
+.ordered-items-holder
+{
+    flex: 1;
+}
+
+.odered-items-section
+{
+    max-width: 500px;
+}
+
+.card 
+{
+    flex: 1;
+}
+
+.status-change-btn
+{
+    /* color: white !important; */
+    width: 100px !important;
+}
+
+/* .primary-modal-btn
+{
+    color: white !important;
+} */
+
+.status-pending, .status-pending.show
+{
+    background-color: var(--gray-light-4) !important;
+    color: var(--gray-dark) !important;
+    border: 1px solid var(--gray-dark) !important;
+}
+
+.status-in-progress, .status-in-progress.show
+{
+    background-color: var(--info-light-5) !important;
+    color: var(--info-dark) !important;
+    border: 1px solid var(--info-dark) !important;
+}
+
+.status-out-for-delivery, .status-out-for-delivery.show
+{
+    background-color: var(--warning-light-3) !important;
+    color: var(--warning-dark-2) !important;
+    border: 1px solid var(--warning-dark-2) !important;
+}
+
+.status-completed, .status-completed.show
+{
+    background-color: var(--success-light-6) !important;
+    color: var(--success) !important;
+    border: 1px solid var(--success) !important;
+}
+
+.status-declined, .status-declined.show
+{
+    background-color: var(--danger-light-4) !important;
+    color: var(--danger) !important;
+    border: 1px solid var(--danger) !important;
+}

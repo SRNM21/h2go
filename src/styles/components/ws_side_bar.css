@@ -1,0 +1,53 @@
+.side-bar
+{
+    background-color: white;
+    position: absolute;
+    z-index: 100;
+    width: var(--sidebar-w);
+    height: 100%;
+    margin-right: 100px;
+    overflow: hidden;
+    box-shadow: none;
+    transition: all .15s ease-in-out;
+}
+
+.side-bar:hover
+{
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    width: var(--sidebar-w-hover);
+    transition-delay: .5s;
+}
+
+.side-bar .nav-label
+{
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity .15s ease-in-out;
+}
+
+.side-bar:hover .nav-label
+{
+    opacity: 1;
+    transition-delay: .5s;
+}
+
+.navs
+{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navs:hover
+{
+    background-color: var(--tertiary-color);
+}
+
+.main-navs
+{
+    flex: 1;
+}
+
+.danger-nav > .nav-label
+{
+    color: var(--danger) !important;
+}

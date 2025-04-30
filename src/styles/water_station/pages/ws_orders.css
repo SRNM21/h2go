@@ -1,0 +1,63 @@
+@import url('../pages/ws_frame_setup.css');
+@import url('../../../../vendor/datatables.css');
+
+main
+{
+    overflow: scroll;
+}
+
+table > thead 
+{
+    font-weight: 600;
+}
+
+.filter-dd
+{
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.filter-dd.active
+{
+    background-color: var(--secondary-color) !important;
+}
+
+.dropdown-item:active
+{
+    background-color: var(--ghost-color) !important;
+}
+
+.dropdown-item.active
+{
+    background-color: var(--tertiary-color) !important;
+}
+
+.status-pending, .status-pending > *
+{
+    background-color: var(--gray-light-4) !important;
+    color: var(--gray-dark) !important;
+}
+
+.status-in-progress, .status-in-progress > *
+{
+    background-color: var(--info-light-5) !important;
+    color: var(--info-dark) !important;
+}
+
+.status-out-for-delivery, .status-out-for-delivery > *
+{
+    background-color: var(--warning-light-3) !important;
+    color: var(--warning-dark-2) !important;
+}
+
+.status-completed, .status-completed > *
+{
+    background-color: var(--success-light-6) !important;
+    color: var(--success) !important;
+}
+
+.status-declined, .status-declined > *
+{
+    background-color: var(--danger-light-4) !important;
+    color: var(--danger) !important;
+}

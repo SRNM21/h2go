@@ -1,0 +1,47 @@
+@import url('../pages/ws_frame_setup.css');
+
+.form-wrapper
+{
+    width: 40%;
+}
+
+.btn-danger
+{
+    color: white !important;
+}
+
+.verification-illustration-holder
+{
+    height: 200px;
+    width: 200px;
+}
+
+.verification-illustration-holder > svg
+{
+    height: 100%;
+    width: 100%;
+}
+
+.pin-input
+{
+    height: 50px;
+    width: fit-content;
+}
+
+.v-pin
+{
+    width: 40px;
+    text-align: center;
+    font-size: var(--body-large);
+}
+
+.btn-link:hover
+{
+    text-decoration: none;
+}
+
+.water-station-image
+{
+    height: 150px;
+    width: 150px;
+}

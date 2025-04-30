@@ -1,0 +1,40 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box !important;
+    font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    scroll-behavior: smooth;
+}
+
+p, h1, h2, h3, h4, h5, h6, hr
+{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body
+{
+    height: 100dvh !important;
+    width: 100dvw !important;
+}
+
+ol, ul 
+{
+	list-style: none;
+}
+
+table 
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+svg 
+{
+	width: 24px;
+	height: 24px;
+	aspect-ratio: 1/1;
+}

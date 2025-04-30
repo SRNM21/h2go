@@ -1,0 +1,26 @@
+@import url('cs_sign_in.css');
+
+.verification-illustration-holder
+{
+    height: 250px;
+    width: 250px;
+}
+
+.verification-illustration-holder > svg
+{
+    height: 100%;
+    width: 100%;
+}
+
+.pin-input
+{
+    height: 50px;
+    width: fit-content;
+}
+
+.pin-input > input 
+{
+    width: 40px;
+    text-align: center;
+    font-size: var(--body-large);
+}

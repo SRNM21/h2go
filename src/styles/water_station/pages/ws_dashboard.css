@@ -1,0 +1,57 @@
+@import url('../pages/ws_frame_setup.css');
+
+.badge.text-bg-success
+{
+    background-color: var(--success-light-6) !important;
+    color: var(--success) !important;
+}
+
+.badge.text-bg-success * 
+{
+    fill: var(--success) !important;
+    color: var(--success) !important;
+}
+
+.badge.text-bg-danger
+{
+    background-color: var(--danger-light-4) !important;
+    color: var(--danger) !important;
+}
+
+.badge.text-bg-danger * 
+{
+    fill: var(--danger) !important;
+    color: var(--danger) !important;
+}
+
+.card
+{
+    flex: 1;
+}
+
+main
+{
+    flex: 1;
+}
+
+.charts
+{
+    flex: 1;
+}
+
+.charts > div 
+{
+    flex: 1;
+}
+
+.chart-holder
+{
+    position: relative;
+    flex: 1;
+}
+
+.charts
+{
+    height: 100%;
+    width: 100%;
+}

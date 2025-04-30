@@ -1,0 +1,234 @@
+@import url('../../vendor/bootstrap.min.css');
+@import url('reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root
+{   
+    /** COLOR PALETTE */
+    --primary-color:    #004A7C;
+    --secondary-color:  #FAFAFA;
+    --tertiary-color:   #E8F1F5;
+    --accent-color:     #005691;
+    --ghost-color:      #D9D9D9;
+
+    /** ADDITIONAL UTIL PALETTE */
+    --info-dark:        #1C3FB7;
+    --info:             #2D68F8;
+    --info-light:       #5475E5;
+    --info-light-2:     #8099EC;
+    --info-light-3:     #ADBCF2;
+    --info-light-4:     #C3CEF6;
+    --info-light-5:     #E1E8FF;    
+    
+    --success-dark:     #1A8245;
+    --success:          #22AD5C;
+    --success-light:    #2CD673;
+    --success-light-2:  #57DE8F;
+    --success-light-3:  #82E6AC;
+    --success-light-4:  #ACEFC8;
+    --success-light-5:  #C2F3D6;
+    --success-light-6:  #DAF8E6;
+
+    --warning-dark-2:   #D97706;
+    --warning-dark:     #F59E0B;
+    --warning:          #FBBF24;
+    --warning-light:    #FCD34D;
+    --warning-light-2:  #FDE68A;
+    --warning-light-3:  #FEF3C7;
+    --warning-light-4:  #FFFBEB;
+
+    --danger-dark:      #E10E0E;
+    --danger:           #F23030;
+    --danger-light:     #F56060;
+    --danger-light-2:   #F89090;
+    --danger-light-3:   #FBC0C0;
+    --danger-light-4:   #FDD8D8;
+    --danger-light-5:   #FEEBEB;
+    --danger-light-6:   #FEF3F3;
+
+    --gray-dark-3:      #111928;
+    --gray-dark-2:      #1F2A37;
+    --gray-dark:        #374151;
+    --gray:             #4B5563;
+    --gray-light:       #6B7280;
+    --gray-light-2:     #9CA3AF;
+    --gray-light-3:     #D1D5DB;
+    --gray-light-4:     #E5E7EB;
+
+    /** HEADER TEXT SIZE */
+    --header-h1:        60px;
+    --header-h2:        48px;
+    --header-h3:        40px;
+    --header-h4:        30px;
+    --header-h5:        28px;
+    --header-h6:        24px;
+
+    /** BODY TEXT SIZE */
+    --body-x-large:     20px;
+    --body-large:       18px;
+    --body-medium:      16px;
+    --body-small:       14px;
+    --body-x-small:     12px;
+
+    /** WHITE SPACE */
+    --ws-1:             2px;
+    --ws-2:             4px;
+    --ws-3:             6px;
+    --ws-4:             8px;
+    --ws-5:             12px;
+    --ws-6:             14px;
+    --ws-7:             16px;
+    --ws-8:             18px;
+    --ws-9:             20px;
+    --ws-10:            24px;
+    --ws-11:            26px;
+    --ws-12:            28px;
+    --ws-13:            30px;
+    --ws-14:            32px;
+    --ws-15:            34px;
+    --ws-16:            36px;
+    --ws-17:            38px;
+    --ws-18:            40px;
+    --ws-19:            42px;
+    --ws-20:            44px;
+
+    --sidebar-w:        92px;
+    --sidebar-w-hover:  200px;
+    --header-h:         78px
+}
+
+/** OVERWRITE BS CLASS */
+
+*
+{
+    font-family: Poppins, Arial, Helvetica, sans-serif !important;
+}
+
+* :not(.btn, .form-control, input, .invalid-feedback) 
+{
+    color: #004A7C !important;
+}
+
+.form-control, .form-check-input
+{
+    border: 1px solid var(--ghost-color);
+}
+
+.form-control:focus, .form-check-input:focus, .form-select:focus
+{
+    border-color: var(--accent-color);
+    box-shadow: none;
+}
+
+.btn-outline-primary
+{
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}
+
+.btn-outline-primary:hover
+{
+    color: white !important;
+    background-color: var(--accent-color) !important;
+}
+
+.input-group > .btn-outline-secondary > *, .input-group > .btn-outline-secondary > svg > path
+{
+    transition: all .15s ease-in-out;
+}
+
+.input-group > .btn-outline-secondary:hover 
+{
+    background-color: var(--accent-color);
+}
+
+.input-group > .btn-outline-secondary > *, .input-group > .btn-outline-secondary > svg > path
+{
+    color: var(--accent-color);
+    fill: var(--accent-color);
+}
+
+.input-group > .btn-outline-secondary:hover > *, .input-group > .btn-outline-secondary:hover > svg > path
+{
+    color: var(--secondary-color);
+    fill: var(--secondary-color);
+}
+
+.btn-primary
+{
+    border: none;
+    background-color: var(--accent-color);
+    color: white !important;
+}
+
+.btn-primary:hover, .btn-primary:focus
+{
+    background-color: var(--primary-color) !important;
+}
+
+.btn.show
+{
+    background-color: var(--accent-color);
+    color: var(--secondary-color) !important;
+}
+
+textarea.form-control
+{
+    max-height: 200px;
+}
+
+.toast-success
+{
+    background-color: var(--success-light-6) !important;
+    border: 1px solid var(--success-dark) !important;
+}
+
+.toast-success *
+{
+    color: var(--success-dark) !important;
+}
+
+.toast-danger
+{
+    background-color: var(--danger-light-6) !important;
+    border: 1px solid var(--danger-dark) !important;
+}
+
+.toast-danger *
+{
+    color: var(--danger-dark) !important;
+}
+
+/** CLASS EXTENSION */
+
+.btn-text
+{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--body-small);
+    color: var(--accent-color);
+}
+
+.btn-text:hover
+{
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+.suggestion-text
+{
+    font-size: var(--body-small);
+}
+
+.highlight 
+{
+    background-color: yellow;
+    font-weight: bold;
+}
+
+/*! DEBUGGING */
+
+.debug
+{
+    border: 1px solid red !important;
+}

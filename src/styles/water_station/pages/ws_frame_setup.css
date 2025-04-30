@@ -1,0 +1,39 @@
+@import url('../../root.css');
+@import url('../../components/ws_side_bar.css');
+
+header 
+{
+    padding: var(--ws-10);
+    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+header > h4 
+{
+    font-weight: 600;
+}
+
+main
+{
+    padding: var(--ws-10);
+    height: calc(100dvh - var(--header-h));
+    width: calc(100dvw - var(--sidebar-w));
+}
+
+.cont
+{
+    margin-left: var(--sidebar-w);
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.breadcrumb
+{
+    margin: 0 !important;
+}
+
+.breadcrumb h4 
+{
+    font-weight: 600;
+}
+

@@ -1,0 +1,46 @@
+@import url('../pages/ws_frame_setup.css');
+@import url('../../../../vendor/datatables.css');
+
+main
+{
+    overflow: scroll;
+}
+
+.filter-dd
+{
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.filter-dd.active
+{
+    background-color: var(--secondary-color) !important;
+}
+
+.dropdown-item:active
+{
+    background-color: var(--ghost-color) !important;
+}
+
+.dropdown-item.active
+{
+    background-color: var(--tertiary-color) !important;
+}
+
+.log-edit, .log-edit > *
+{
+    background-color: var(--warning-light-3) !important;
+    color: var(--warning-dark-2) !important;
+}
+
+.log-add, .log-add > *
+{
+    background-color: var(--success-light-6) !important;
+    color: var(--success) !important;
+}
+
+.log-delete, .log-delete > *
+{
+    background-color: var(--danger-light-4) !important;
+    color: var(--danger) !important;
+}
