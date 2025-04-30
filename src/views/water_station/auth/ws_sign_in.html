@@ -41,7 +41,7 @@
                         <button type='button' class='btn btn-link btn-text'>Forgot your password?</button>
                     </div>
                     <div>
-                        <button class='btn btn-primary w-100' type='submit'>Sign in</button>
+                        <button class='btn btn-primary w-100' type='submit' >Sign in</button>
                         <!-- <a href='../pages/ws_p_dashboard.xml' class='btn btn-primary w-100'>Sign in</a> -->
                     </div>
                     <div class='d-flex justify-content-center w-100'>
@@ -51,6 +51,26 @@
             </div>
         </div>
     </main>
+
+    <!--* LOADING MODAL -->
+    <div id='loading-modal' class='modal fade' tabindex='-1' aria-labelledby='loading-modal-label' aria-hidden='true' data-bs-backdrop='static' data-bs-keyboard='false'>
+        <div class='modal-dialog modal-dialog-centered'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h5 id='loading-modal-label' class='modal-title'>Signing in</h5>
+                </div>
+                <div id='loading-modal-content' class='modal-body'>
+                    <div class="d-flex align-items-center justify-content-center w-100 p-5">
+                        <p role="status">Please wait...</p>
+                        <div class="spinner-border text-primary ms-3" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--* TOAST -->
+    <div id='toast-container' class='toast-container position-fixed bottom-0 end-0 p-3'></div>
     
     <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.js"></script>
     <script type='module' src='../../../script/water_station/ws_login.js'></script>
