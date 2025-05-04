@@ -1,0 +1,56 @@
+@import url('../pages/cs_frame_setup.css');
+
+.section 
+{
+    flex: 1;
+}
+
+.water-stations-section 
+{
+    max-width: 400px;
+}
+
+.map
+{
+    flex: 1;
+    background-color: var(--ghost-color);
+}
+
+.stars
+{
+    height: 18px;
+    width: 18px;
+}
+
+.ws-address, .ws-status, .review-section
+{
+    font-size: var(--body-small);
+}
+
+.ws-status[data-status='Open']
+{
+    color: var(--success-dark) !important;
+}
+
+.ws-status[data-status='Closed']
+{
+    color: var(--danger-dark) !important;
+}
+
+.go-to-ws
+{
+    height: 36px;
+    width: 36px;
+}
+
+.collapse-btn
+{
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    height: 60px;
+    background-color: white;
+    border: none;
+    border-radius: 0 8px 8px 0; 
+}

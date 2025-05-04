@@ -184,7 +184,7 @@
                                     <div id='order-summary-mod' class='ms-auto d-flex justify-content-center align-items-center'>
                                         <img id='mod-indicator' class='mod-img' src='../../../assets/images/mode_of_payment/cash.png'/>
                                         <div class="dropdown ms-3">
-                                            <button id='mod-type-parent' class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cash</button>
+                                            <button id='mod-type-parent' class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cash On Delivery</button>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <button class="dropdown-item d-flex mod-type" type="button" data-mod='cash.png'>

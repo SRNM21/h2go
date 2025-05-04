@@ -1,0 +1,84 @@
+@import url('../pages/cs_frame_setup.css');
+
+.section 
+{
+    flex: 1;
+}
+
+.water-stations-section
+{
+    max-width: 400px;
+}
+
+.ws-image
+{
+    height: 300px;
+}
+
+.stars
+{
+    height: 18px;
+    width: 18px;
+}
+
+.ws-status, .review-section
+{
+    font-size: var(--body-small);
+}
+
+.ws-status[data-status='Open']
+{
+    color: var(--success-dark) !important;
+}
+
+.ws-status[data-status='Closed']
+{
+    color: var(--danger-dark) !important;
+}
+
+
+.product-card
+{    
+    height: 210px;
+    width: 210px;
+    cursor: pointer;
+    transition: border-color .15s ease-in-out;
+}
+
+.product-card:hover
+{
+    border-color: var(--accent-color);
+}
+
+.product-card > .card-img-top 
+{
+    height: 150px;
+    width: 150px;
+}
+
+.view-product-image
+{
+    height: 200px;
+    width: 200px;
+}
+
+.view-product-modal-btns
+{
+    flex: 1;
+}
+
+.view-product-stocks
+{
+    font-size: var(--body-small);
+}
+
+.qty-group
+{
+    width: 120px;
+}
+
+.qty-group svg 
+{
+    height: 20px;
+    width: 20px;
+}

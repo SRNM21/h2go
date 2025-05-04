@@ -170,7 +170,6 @@ function search()
 
 // #region ORDER TABLE ACTIONS
 
-
 var currentOrderItem
 
 const removeAllOrdersBtn = $('#remove-all-orders-btn')

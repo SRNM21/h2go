@@ -73,7 +73,7 @@
 									</div>
 								</div>
 
-								<div class='items-wrapper d-flex flex-wrap'>
+								<div class='items-wrapper d-flex flex-wrap overflow-auto'>
 									<xsl:for-each select='$water-station/inventory/product'>
 										<xsl:sort select='name'/>
 		

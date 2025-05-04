@@ -4,7 +4,7 @@ import {
     validateRequired
 } from '../../util/validation.js'
 
-var WSACC = []
+var CSASS = []
 preLoadAccounts()
 
 const toastContainer = $('#toast-container')
@@ -44,10 +44,10 @@ function preLoadAccounts()
         dataType: 'xml',
         success: (xml) => {
 
-            $(xml).find('water-stations water-station').each(function () {
+            $(xml).find('customers customer').each(function () {
                 const $station = $(this)
 
-                WSACC.push({
+                CSASS.push({
                     xml: $station,
                     email: $station.find('account-details email').text(),
                     password: $station.find('account-details password').text(),
@@ -62,11 +62,12 @@ function preLoadAccounts()
     })
 }
 
+
 function queryAccount(xml) { 
     const email = emailInput.val()
     const password = passwordInput.val()
 
-    const account = WSACC.find(acc => acc.email === email)
+    const account = CSASS.find(acc => acc.email === email)
 
     if (!account) 
     {
@@ -114,7 +115,7 @@ function login(account)
     //     }
     // })
 
-    window.location = '../pages/ws_p_dashboard.xml'
+    window.location = '../pages/cs_p_water_stations.xml'
 }
 
 function notify(type, content)
