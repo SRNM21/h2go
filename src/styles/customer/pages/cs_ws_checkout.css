@@ -62,3 +62,13 @@
     height: 24px;
     width: 24px;
 }
+
+.selected-address
+{
+    border-color: var(--accent-color) !important;
+}
+
+.address-card
+{
+    cursor: pointer;
+}

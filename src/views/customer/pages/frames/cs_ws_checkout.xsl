@@ -35,7 +35,7 @@
 					<main>
 						<div class='d-flex justify-content-center h-100'>
 							<div class='wrapper'>
-								<div class='customer-address-wrapper d-flex flex-column rounded border p-4'>
+								<div class='customer-address-wrapper d-flex flex-column rounded border p-4 user-select-none'>
 									<div class='d-flex'>
 										<div class='d-flex justify-content-center align-items-center me-auto'>
 											<span>
@@ -43,16 +43,19 @@
 											</span>
 											<h5 class='fw-semibold ms-3'>Shipping Address</h5>
 										</div>
-										<button class='btn btn-sm'>Change</button>
+										<button type='button' class='btn btn-sm' data-bs-toggle='modal' data-bs-target='#address-modal'>Change</button>
 									</div>
 
-									<div class='ms-4 me-4 mt-2'>
+									<div class='ms-4 me-4 mt-2 '>
 										<span class='ms-3 me-3 d-flex align-items-center'>
 											<p>
-												<strong class='fw-medium'>
-													<xsl:value-of select='$customer/personal-details/name'/> (<xsl:value-of select='$customer/personal-details/contact-number'/>)
+												<strong id='shipping-customer-name' class='fw-medium me-1'>
+													<xsl:value-of select='$customer/personal-details/name'/>
 												</strong>
-												<xsl:value-of select='$customer/personal-details/address'/>
+												<strong id='shipping-customer-contact-number' class='fw-medium me-1'>
+													(<xsl:value-of select='$customer/personal-details/contact-number'/>)
+												</strong>
+												<p id='shipping-customer-address'><xsl:value-of select='$customer/personal-details/address'/></p>
 											</p>
 										</span>
 									</div>
@@ -70,7 +73,7 @@
 									</div>
 									<hr/>
 									<div class='p-4'>
-										<table class='table table-borderless w-100'>
+										<table class='table table-borderless w-100 user-select-none'>
 											<thead>
 												<tr>
 													<th class='header'>Product</th>
@@ -139,8 +142,102 @@
 					</main>
 				</div>
 
+				<!--* SHIPPING ADDRESSES MODAL -->
+				<div id='address-modal' class='modal fade' tabindex='-1' aria-labelledby='address-modal-label' aria-hidden='true' data-bs-backdrop='static' data-bs-keyboard='false'>
+					<div class='modal-dialog modal-dialog-centered'>
+						<div class='modal-content'>
+							<div class='modal-header'>
+								<h5 id='address-modal-label' class='modal-title'>Your Addresses</h5>
+								<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+							</div>
+							<div id='address-modal-content' class='modal-body'>
+								<div class='rounded border mb-3'>
+									<button id='add-address-btn' type='button' class='btn w-100 d-flex align-items-center' data-bs-toggle='modal' data-bs-target='#add-address-modal'>
+										<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#005691"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+										<p>Add Address</p>
+									</button>
+								</div>
+
+								<xsl:variable name='customerPD' select='$customer/personal-details'/>
+
+								<div class='d-flex flex-column p-3 mb-3 border rounded user-select-none address-card selected-address'
+									data-cs-name='{$customerPD/name}'
+									data-gender='{$customerPD/gender}'
+									data-contact-num='{$customerPD/contact-number}'
+									data-address='{$customerPD/address}'
+								>
+									<div class='d-flex align-items-center'>
+										<strong class='fw-medium mb-2 new-sp-cs-name-highlight'>
+											<xsl:value-of select='$customerPD/name'/>
+										</strong>
+										<button type='button' class='btn btn-sm ms-auto edit-address-btn' data-bs-toggle='modal' data-bs-target='#add-address-modal'>Edit</button>
+									</div>
+									<p class='new-sp-cs-contact-num'><xsl:value-of select='$customerPD/contact-number'/></p>
+									<p class='new-sp-cs-address'><xsl:value-of select='$customerPD/address'/></p>
+								</div>
+							
+							</div>
+							<div class='modal-footer'>
+								<button type='button' class='btn btn-outline-primary' data-bs-dismiss='modal'>Close</button>
+								<button id='confirm-select-address-btn' type='button' class='btn btn-primary primary-modal-btn' data-bs-dismiss='modal'>Select</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--* ADD ADDRESS MODAL -->
+                <div id='add-address-modal' class='modal fade' tabindex='-1' aria-labelledby='add-address-modal=label' aria-hidden='true' data-bs-backdrop='static' data-bs-keyboard='false'>
+                    <div class='modal-dialog modal-dialog-centered'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <h5 id='add-address-modal-label' class='modal-title'>New Address</h5>
+                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                            </div>
+                            <div class='modal-body'>
+                                <form id='add-address-form' class='needs-validation' novalidate='true'>
+                                    <div class='mb-3 has-validation'>
+                                        <label for='cs-name' class='form-label'>First name and Last name of receiver</label>
+                                        <div class='input-group'>
+                                            <input id='new-shipping-fname' type='text' aria-label='First name' class='form-control' data-fb='First Name' required='true' pattern='[A-Za-z\s]+'/>
+                                            <input id='new-shipping-lname' type='text' aria-label='Last name' class='form-control' data-fb='Last Name' required='true' pattern='[A-Za-z\s]+'/>
+											<div id='new-shipping-fname-invalid-fb' class="invalid-feedback"></div>
+											<div id='new-shipping-lname-invalid-fb' class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class='mb-3 has-validation'>
+                                        <label for='cs-contact-number' class='form-label'>Contact Number</label>
+										<input id='new-shipping-contact-num' type='tel' aria-label='Contact Number' class='form-control' maxLength='11' data-fb='Contact Number' required='true'/>
+										<div id='new-shipping-contact-num-invalid-fb' class="invalid-feedback"></div>
+                                    </div>
+                                    <div class='mb-3 has-validation'>
+                                        <label for='cs-gender' class='form-label'>Gender</label>
+                                        <select id='new-shipping-gender' class='form-select' aria-label='Select Gender' data-fb='Gender' required='true'>
+                                            <option value='' selected='true' disabled='true'>Select Gender</option>
+                                            <option value='M'>Male</option>
+                                            <option value='F'>Female</option>
+                                        </select>
+										<div id='new-shipping-gender-invalid-fb' class="invalid-feedback"></div>
+                                    </div>
+                                    <div class='mb-3 has-validation'>
+                                        <label for='ws-address' class='form-label'>Address</label>
+                                        <textarea id='new-shipping-address' class='form-control' rows='3' data-fb='Address' required='true'></textarea>
+										<div id='new-shipping-address-invalid-fb' class="invalid-feedback"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-outline-primary' data-bs-dismiss='modal'>Cancel</button>
+                                <button id='confirm-add-address-btn' type='button' class='btn btn-primary'>Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 				<xsl:call-template name='log-out-modal'/>
 
+				<!--* TOAST -->
+				<div id='toast-container' class='toast-container position-fixed bottom-0 end-0 p-3'></div>
+				
 				<script type='module' src='../../../script/customer/cs_ws_checkout.js'></script>
 			</body>
 		</html>

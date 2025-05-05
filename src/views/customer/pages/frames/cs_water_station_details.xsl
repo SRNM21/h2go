@@ -140,7 +140,6 @@
 										</div>
 									</div>
 								</div>
-
 								
 							</div>
 							<div class='modal-footer'>
@@ -151,6 +150,8 @@
 						</div>
 					</div>
 				</div>
+
+				<!-- TODO ADD MESSAGE WATER STATION -->
 
 				<xsl:call-template name='log-out-modal'/>
 

@@ -236,6 +236,10 @@
                                         </div>
                                     </div>
                                     <div class='mb-3'>
+                                        <label for='cs-contact-num' class='form-label'>Contact Number</label>
+                                        <input type='text' aria-label='Contact Number' class='form-control'/>
+                                    </div>
+                                    <div class='mb-3'>
                                         <label for='cs-gender' class='form-label'>Gender</label>
                                         <select id='cs-gender' class='form-select' aria-label='Select Gender'>
                                             <option selected='true' disabled='true'>Select Gender</option>

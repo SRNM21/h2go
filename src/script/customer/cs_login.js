@@ -62,7 +62,6 @@ function preLoadAccounts()
     })
 }
 
-
 function queryAccount(xml) { 
     const email = emailInput.val()
     const password = passwordInput.val()
