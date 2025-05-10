@@ -1,5 +1,9 @@
 import '../main.js'
 
+import {
+    notify
+} from '../../util/helper.js'
+
 var editStatus
 
 // #region ACCOUNT DETAILS
@@ -12,7 +16,7 @@ const changePassBtn = $('#change-pass-btn')
 const emailInput = $('#email')
 
 const saveEmailEditBtn = $('#save-edit-email-btn')
-const discardEmailChangesBtn = $('#confirm-discard-email-btn')
+const discardChangesBtn = $('#confirm-discard-btn')
 
 editEmailBtnWrapper.empty()
 editEmailBtnWrapper.append(editEmailBtn)
@@ -25,7 +29,26 @@ editEmailBtnWrapper.on('click', '#edit-email-btn', function ()
     emailInput.prop('disabled', false)
 })
 
-discardEmailChangesBtn.on('click', () => resetEmailUtilBtns(emailInput.data('initial')))
+discardChangesBtn.on('click', function() 
+{
+    if (editStatus == 'EMAIL')
+    {
+        resetEmailUtilBtns(emailInput.data('initial'))
+    }
+    else if (editStatus = 'EDIT WATER STATION DETAILS')
+    {
+        wsImage.attr('src', wsImage.data('initial'))
+        wsName.val(wsName.data('initial'))
+        wsContactNum.val(wsContactNum.data('initial'))
+        wsAddress.val(wsAddress.data('initial'))
+    
+        editDetailsBtn.text('Edit Details')
+        editDetailsBtn.prop('onclick', null).off('click')
+        editDetailsBtn.on('click', () => editDetailsFunc())
+        cancelEditDetailsBtn.hide()
+        disableWaterStationDetails(true)
+    }
+})
 
 saveEmailEditBtn.on('click', () => {editStatus = 'EMAIL'})
 changePassBtn.on('click', () => {editStatus = 'PASSWORD'})
@@ -44,15 +67,12 @@ function resetEmailUtilBtns(data)
 // #region VERIFY ACCOUNT 
 
 const verifyBtn = $('#verify-btn')
-const toastContainer = $('#toast-container')
 const emailData = $('#verify-email-data')
 
 const changePassModal = $('#change-pass-modal')
 
 verifyBtn.on('click', function () 
 {  
-    console.log(editStatus)
-    
     if (editStatus == 'EMAIL')
     {
         notify('success', 'Email changed successfully.')
@@ -68,30 +88,9 @@ verifyBtn.on('click', function ()
         notify('success', 'Water station details has changed successfully.')
         disableWaterStationDetails(true)
         editDetailsBtn.text('Edit Details')
+        cancelEditDetailsBtn.hide()
     }
 })
-
-function notify(type, content)
-{
-    let toast = $(`
-        <div class='toast toast-${type} align-items-center show' role='alert' aria-live='assertive' aria-atomic='true'>
-            <div class='d-flex'>
-                <div class='toast-body'>
-                    ${content}
-                </div>
-                <button type='button' class='btn-close me-2 m-auto' data-bs-dismiss='toast' aria-label='Close'></button>
-            </div>
-        </div>    
-    `)
-
-    toastContainer.append(toast)
-
-    setTimeout(function() {
-        toast.fadeOut('slow', function() {
-            $(this).remove()
-        })
-    }, 5000)
-}
 
 // #endregion VERIFY ACCOUNT
 
@@ -129,20 +128,29 @@ const wsName = $('#ws-name')
 const wsContactNum = $('#ws-contact-num')
 const wsAddress = $('#ws-address')
 
+const cancelEditDetailsBtn = $('#cancel-edit-details-btn')
 const editDetailsBtn = $('#edit-details-btn')
 
 const verificationModal = $('#verification-modal')
 
-editDetailsBtn.on('click', function () 
-{  
+cancelEditDetailsBtn.hide()
+
+editDetailsBtn.on('click', () => editDetailsFunc())
+
+function editDetailsFunc()
+{
     disableWaterStationDetails(false)
 
+    editStatus = 'EDIT WATER STATION DETAILS'
+    
+    cancelEditDetailsBtn.show()
     editDetailsBtn.text('Save')
+    editDetailsBtn.prop('onclick', null).off('click')
     editDetailsBtn.on('click', () => {
         editStatus = 'WATER STATION DETAILS'
         verificationModal.modal('toggle')
     })
-})
+}
 
 function disableWaterStationDetails(enable) 
 {  

@@ -1,5 +1,22 @@
 import '../main.js'
 
+import {
+    validateRequired,
+    validateName,
+    validatePhoneNumber,
+    validateGender
+} from '../../util/validation.js'
+
+import {
+    toPeso,
+    notify
+} from '../../util/helper.js'
+
+const prices = $('.product-price')
+
+prices.each((_, e) => $(e).text(toPeso($(e).text())))
+
+
 // #region ADD TO ORDER
 
 const noOrderFlag = $('#no-order-flag')
@@ -10,8 +27,6 @@ const orderTableBody = orderTable.find('tbody')
 const orders = new Map()
 
 products.on('click', (e) => addToOrder(e))
-
-var fixDecimal = (x) => (Math.round(x * 100) / 100).toFixed(2)
 
 function addToOrder(e) 
 {
@@ -25,6 +40,9 @@ function addToOrder(e)
     if (orders.has(productName))
     {
         let temp = orders.get(productName)
+
+        if (temp[0] >= productStock) return
+
         orders.set(productName, [temp[0] + 1, temp[1] + productPrice, productPrice, productStock])
     }
     else 
@@ -52,7 +70,7 @@ function updateOrderTable() {
 
     orders.forEach((details, name) => {
         let quantity = details[0]
-        let price = fixDecimal(details[1])
+        let price = toPeso(details[1])
         let row = `
             <tr>
                 <td>${name}</td>
@@ -84,7 +102,7 @@ function updateOrderTotal()
     let total = 0
     orders.forEach(details => total += details[1])
 
-    $('#total-amount').text(fixDecimal(total)) 
+    $('#total-amount').text(toPeso(total)) 
 }
 
 // #endregion ADD TO ORDER
@@ -176,7 +194,6 @@ const removeAllOrdersBtn = $('#remove-all-orders-btn')
 const confirmRemoveAllOrdersBtn = $('#confirm-remove-all-order-btn')
 
 const confirmRemoveBtn = $('#confirm-remove-btn')
-const toastContainer = $('#toast-container')
 
 orderTableBody.on('click', '.decrement-btn', function() 
 {
@@ -228,28 +245,6 @@ confirmRemoveBtn.on('click', function ()
 
 })
 
-function notify(type, content)
-{
-    let toast = $(`
-        <div class="toast toast-${type} align-items-center show" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    ${content}
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>    
-    `)
-
-    toastContainer.append(toast)
-
-    setTimeout(function() {
-        toast.fadeOut('slow', function() {
-            $(this).remove()
-        })
-    }, 5000)
-}
-
 confirmRemoveAllOrdersBtn.on('click', function () 
 {  
     orders.clear()
@@ -266,6 +261,20 @@ const orderSummaryTable = $('#order-summary-table')
 const placeOrderBtn = $('#place-order-btn')
 const confirmPlaceOrderBtn = $('#confirm-place-order-btn')
 const orderSummaryTotalAmount = $('#order-summary-total-amount')
+
+const customerDetailsForm = $('#customer-details-form')
+
+const customerDetailsFirstName = $('#customer-details-fname')
+const customerDetailsLastName = $('#customer-details-lname')
+const customerDetailsContactNumber = $('#customer-details-contact-num')
+const customerDetailsGender = $('#customer-details-gender')
+const customerDetailsAddress = $('#customer-details-address')
+
+const customerDetailsFirstNameFeedback = $('#customer-details-fname-invalid-fb')
+const customerDetailsLastNameFeedback = $('#customer-details-lname-invalid-fb')
+const customerDetailsContactNumberFeedback = $('#customer-details-contact-num-invalid-fb')
+const customerDetailsGenderFeedback = $('#customer-details-gender-invalid-fb')
+const customerDetailsAddressFeedback = $('#customer-details-address-invalid-fb')
 
 placeOrderBtn.prop('disabled', true)
 removeAllOrdersBtn.prop('disabled', true)
@@ -286,20 +295,60 @@ function summaryOrder()
                 <td>${index++}</td>
                 <td>${productName}</td>
                 <td>${details[0]}</td>
-                <td>${fixDecimal(details[1])}</td>
+                <td>${toPeso(details[1])}</td>
             </tr>
         `
         orderSummaryTable.append(template)
     })
 
-    orderSummaryTotalAmount.text(fixDecimal(totalAmount))
+    orderSummaryTotalAmount.text(toPeso(totalAmount))
 }
 
-confirmPlaceOrderBtn.on('click', function () 
+placeOrderBtn.on('click', function () 
 {  
-    orders.clear()
-    updateOrderTable()
-    notify('success', 'Order is placed successfully.')
+    customerDetailsFirstName.val('')
+    customerDetailsLastName.val('')
+    customerDetailsContactNumber.val('')
+    customerDetailsGender.val('')   
+    customerDetailsAddress.val('')
+
+    customerDetailsFirstNameFeedback.text('')
+    customerDetailsLastNameFeedback.text('')
+    customerDetailsContactNumberFeedback.text('')
+    customerDetailsGenderFeedback.text('')
+    customerDetailsAddressFeedback.text('')
+})
+
+customerDetailsContactNumber.on('input', function() 
+{
+    let value = $(this).val()
+    const cleanedValue = value.replace(/[^0-9]/g, '')
+    $(this).val(cleanedValue)
+})
+
+confirmPlaceOrderBtn.on('click', () => customerDetailsForm.trigger('submit'))
+
+customerDetailsForm.on('submit', function(e) 
+{
+    // ? Validate each input first and add feedback before final checking of form validation
+    const isFirstNameValid = validateName(customerDetailsFirstName, customerDetailsFirstNameFeedback)
+    const isLastNameValid = validateName(customerDetailsLastName, customerDetailsLastNameFeedback)
+    const isContactNumberValid = validatePhoneNumber(customerDetailsContactNumber, customerDetailsContactNumberFeedback)
+    const isGenderValid = validateGender(customerDetailsGender, customerDetailsGenderFeedback)
+    const isAddressValid = validateRequired(customerDetailsAddress, customerDetailsAddressFeedback)
+
+    const areAllInputsValid = isFirstNameValid && isLastNameValid && isContactNumberValid && isGenderValid && isAddressValid
+
+    if (areAllInputsValid)
+    {
+        orders.clear()
+        updateOrderTable()
+        notify('success', 'Order is placed successfully.')
+
+        addAddressModal.modal('hide')
+    }
+
+    e.preventDefault()
 })
 
 // #endregion PLACE ORDER

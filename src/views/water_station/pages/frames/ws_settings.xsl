@@ -5,11 +5,12 @@
 	<!--* DATA -->
 	<xsl:variable name='water-station-id' select="document('../../../../../data/system/water_station/ws_data.xml')/water-station-id"/>
 	<xsl:variable name='water-station-data' select="document('../../../../../data/client/h2go_clients.xml')"/>
-	<xsl:variable name='water-station' select='$water-station-data/h2go/water-stations/water-station[@id = $water-station-id]'></xsl:variable>
+	<xsl:variable name='water-station' select='$water-station-data/h2go/water-stations/water-station[@id = $water-station-id]'/>
 	
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/ws_sidebar.xsl'/>
 	<xsl:include href='../../../../components/ws_logout_modal.xsl'/>
+	<xsl:include href='../../../../components/toast_container.xsl'/>
 
     <xsl:template match='/'>
 		<html>
@@ -27,49 +28,68 @@
 					</header>
 
 					<main class='overflow-auto'>
-						<div class='form-wrapper'>
-							<div class='section account-details-section mb-4'>
-								<h5 class='fw-semibold mb-3'>Account Details</h5>
-								<form action="">
-									<div class='mb-3'>
-										<label for='email' class='form-label'>Email</label>
-										<input type='email' id='email' class='form-control' disabled='true' value='{$water-station/account-details/email}' data-initial='{$water-station/account-details/email}'/>
+						<div class='d-flex justify-content-center h-100'>
+							<div class='wrapper rounded-3 border d-flex'>
+								<div class='border-end p-3 w-25'>
+									<nav class="nav flex-column" role='tablist'>
+										<button class='text-start nav-link active' id='nav-profile-tab' data-bs-toggle='tab' data-bs-target='#nav-profile' type='button' role='tab' aria-controls='nav-profile' aria-selected='true'>
+											Profile
+										</button>
+    									<button class='text-start nav-link' id='nav-security-tab' data-bs-toggle='tab' data-bs-target='#nav-security' type='button' role='tab' aria-controls='nav-security' aria-selected='false'>
+											Security
+										</button>
+									</nav>
+								</div>
+								<div class='p-4 overflow-auto w-100 tab-content'>
+
+									<div class='tab-pane fade show active' id='nav-profile' role='tabpanel' aria-labelledby='nav-details' tabindex='0'>
+										<h5 class='fw-semibold mb-3'>Profile</h5>
+										<form action="">
+											<div class='mb-3 d-flex flex-column'>
+												<img id='water-station-image' data-initial='../../../assets/images/products/product_placeholder.png' src='../../../assets/images/products/product_placeholder.png' alt='Water Station Image' class='water-station-image rounded-circle'/>
+												<label for='ws-image' class='form-label'>Water Station Image</label>
+												<input class='form-control' type='file' id='ws-image' disabled='true'/>
+											</div>
+											<div class='mb-3'>
+												<label for='ws-name' class='form-label'>Water Station Name</label>
+												<input type='text' id='ws-name' class='form-control' disabled='true' data-initial='{$water-station/water-station-details/name}' value='{$water-station/water-station-details/name}'/>
+											</div>
+											<div class='mb-3'>
+												<label for='ws-contact-num' class='form-label'>Contact Number</label>
+												<input type='text' id='ws-contact-num' class='form-control' disabled='true' data-initial='{$water-station/water-station-details/contact-number}' value='{$water-station/water-station-details/contact-number}'/>
+											</div>
+											<div class='mb-3'>
+												<label for='ws-address' class='form-label'>Address</label>
+												<textarea class='form-control' id='ws-address' rows='3' disabled='true' data-initial='{$water-station/water-station-details/address}'>
+													<xsl:value-of select='$water-station/water-station-details/address'/>
+												</textarea>
+											</div>
+											<div class='d-flex justify-content-end'>
+												<button id='cancel-edit-details-btn' type='button' class='btn btn-outline-primary me-3' data-bs-toggle='modal' data-bs-target='#notif-modal'>Cancel</button>
+												<button id='edit-details-btn' type='button' class='btn btn-primary'>Edit Details</button>
+											</div>
+										</form>
 									</div>
-									<div id='edit-email-btn-wrapper' class='mb-3'>
-										<button id='edit-email-btn' type='button' class='btn btn-primary w-100'>Edit Email</button>
-										<div id='edit-email-util-container' class='d-flex'>
-											<button id='cancel-edit-email-btn' type='button' class='btn btn-outline-primary w-100 me-3' data-bs-toggle='modal' data-bs-target='#notif-modal'>Cancel</button>
-											<button id='save-edit-email-btn' type='button' class='btn btn-primary w-100' data-bs-toggle='modal' data-bs-target='#verification-modal'>Save</button>
-										</div>
+
+									<div class='tab-pane fade' id='nav-security' role='tabpanel' aria-labelledby='nav-security' tabindex='0'>
+										<h5 class='fw-semibold mb-3'>Security</h5>
+										<form action="">
+											<div class='mb-3'>
+												<label for='email' class='form-label'>Email</label>
+												<input type='email' id='email' class='form-control' disabled='true' value='{$water-station/account-details/email}' data-initial='{$water-station/account-details/email}'/>
+											</div>
+											<div id='edit-email-btn-wrapper' class='mb-3'>
+												<button id='edit-email-btn' type='button' class='btn btn-primary w-100'>Edit Email</button>
+												<div id='edit-email-util-container' class='d-flex'>
+													<button id='cancel-edit-email-btn' type='button' class='btn btn-outline-primary w-100 me-3' data-bs-toggle='modal' data-bs-target='#notif-modal'>Cancel</button>
+													<button id='save-edit-email-btn' type='button' class='btn btn-primary w-100' data-bs-toggle='modal' data-bs-target='#verification-modal'>Save</button>
+												</div>
+											</div>
+											<button id='change-pass-btn' type='button' class='btn btn-outline-primary w-100 ' data-bs-toggle='modal' data-bs-target='#verification-modal'>Change Password</button>
+										</form>
 									</div>
-									<button id='change-pass-btn' type='button' class='btn btn-outline-primary w-100 ' data-bs-toggle='modal' data-bs-target='#verification-modal'>Change Password</button>
-								</form>
-							</div>
-							<hr class='mb-3'/>
-							<div class='section water-station-details-section'>
-								<h5 class='fw-semibold mb-3'>Water Station Details</h5>
-								<form action="">
-									<div class='mb-3 d-flex flex-column'>
-										<img id='water-station-image' src='../../../assets/images/products/product_placeholder.png' alt='Water Station Image' class='water-station-image'/>
-										<label for='ws-image' class='form-label'>Water Station Image</label>
-										<input class='form-control' type='file' id='ws-image' disabled='true'/>
-									</div>
-									<div class='mb-3'>
-										<label for='ws-name' class='form-label'>Water Station Name</label>
-										<input type='text' id='ws-name' class='form-control' disabled='true' value='{$water-station/water-station-details/name}'/>
-									</div>
-									<div class='mb-3'>
-										<label for='ws-contact-num' class='form-label'>Contact Number</label>
-										<input type='text' id='ws-contact-num' class='form-control' disabled='true' value='{$water-station/water-station-details/contact-number}'/>
-									</div>
-									<div class='mb-3'>
-										<label for='ws-address' class='form-label'>Address</label>
-										<textarea class='form-control' id='ws-address' rows='3' disabled='true'>
-											<xsl:value-of select='$water-station/water-station-details/address'/>
-										</textarea>
-									</div>
-									<button id='edit-details-btn' type='button' class='btn btn-primary w-100 mb-3'>Edit Details</button>
-								</form>
+
+								</div>
 							</div>
 						</div>
 					</main>
@@ -84,11 +104,11 @@
                                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                             </div>
                             <div id='notif-modal-content' class='modal-body'>
-                                <p>Discarded email changes will not be saved.</p>
+                                <p>Discarded changes will not be saved.</p>
                             </div>
                             <div class='modal-footer'>
                                 <button type='button' class='btn btn-outline-primary' data-bs-dismiss='modal'>Cancel</button>
-                                <button id='confirm-discard-email-btn' type='button' class='btn btn-danger primary-modal-btn' data-bs-dismiss='modal'>Discard</button>
+                                <button id='confirm-discard-btn' type='button' class='btn btn-danger primary-modal-btn' data-bs-dismiss='modal'>Discard</button>
                             </div>
                         </div>
                     </div>
@@ -362,9 +382,7 @@
 				</div>
 
 				<xsl:call-template name='log-out-modal'/>
-				
-				<!--* TOAST -->
-				<div id='toast-container' class='toast-container position-fixed bottom-0 end-0 p-3'></div>
+				<xsl:call-template name='toast-container'/>
 
 				<script type='module' src='../../../script/water_station/ws_settings.js'></script>
 			</body>

@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-	<xsl:output method="html" indent="yes"/>
+	<xsl:output method='html' indent='yes'/>
 
 	<!--* DATA -->
 	<xsl:variable name='customer-id' select="document('../../../../../data/system/customer/cs_data.xml')/customer-id"/>
@@ -15,7 +15,7 @@
     <xsl:template match='/'>
 		<html>
 			<head>
-                <link rel='stylesheet' href='../../../styles/customer/pages/cs_ws_checkout.css'/>
+                <link rel='stylesheet' href='../../../styles/customer/pages/cs_cart_checkout.css'/>
 			</head>
 			<body class='d-flex w-100 h-100'>
 				<xsl:call-template name='cs-side-bar'/>
@@ -26,16 +26,15 @@
 					<header class='d-flex'>
                         <nav aria-label='breadcrumb'>
                             <ol class='breadcrumb'>
-                                <a href='../pages/cs_p_water_stations.xml' class='breadcrumb-item fw-semibold me-2'><h4>Water Station</h4></a>
-                                <h4 class='breadcrumb-item '><a id='current-water-station' href='' class='fw-semibold me-2'></a></h4>
+                                <a href='../pages/cs_p_cart.xml' class='breadcrumb-item fw-semibold me-2'><h4>Cart</h4></a>
 						        <h4 class='breadcrumb-item active' aria-current='page'>Check Out</h4>
                             </ol>
                         </nav>
 					</header>
 
-					<main>
+					<main class='overflow-auto'>
 						<div class='d-flex justify-content-center h-100'>
-							<div class='wrapper'>
+							<div class='wrapper pb-3'>
 								<div class='customer-address-wrapper d-flex flex-column rounded-3 border p-4 user-select-none'>
 									<div class='d-flex'>
 										<div class='d-flex justify-content-center align-items-center me-auto'>
@@ -77,26 +76,10 @@
 													<th class='header text-center'>Total Amount</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td colSpan='4'>
-														<div class='d-flex align-items-center ms-auto'>
-															<span>
-																<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6V4H20V6H4ZM4 20V14H3V12L4 7H20L21 12V14H20V20H18V14H14V20H4ZM6 18H12V14H6V18ZM5.05 12H18.95L18.35 9H5.65L5.05 12Z" fill="#005691"/></svg>
-															</span>
-															<h6 id='shop-name'>------</h6>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td id='product-image-data' class='product-image-data d-flex align-items-center align-middle'>
-														<img src='../../../assets/images/products/product_placeholder.png' alt=''/>
-														<p id='product-name'>-----</p>
-													</td>
-													<td id='product-amount' class='align-middle text-center'>₱ --.--</td>
-													<td id='product-qty' class='align-middle text-center'>--</td>
-													<td id='product-total-amount' class='align-middle text-center'>₱ --.--</td>
-												</tr>
+											<tbody id='cart-checkout-summary-tbody'>
+
+												<!--? AUTO POPULATED AFTER FETCHING CART IN SESSION -->
+
 											</tbody>
 										</table>
 									</div>
@@ -136,8 +119,8 @@
 
 								<div class='rounded-3 border mt-4 d-flex align-items-center p-4'>
 									<div class='d-flex flex-column me-auto'>
-										<p class='mb-1'>Total (<span id='total-items'></span>):</p>
-										<h4 id='total-amount' class='fw-semibold'></h4>
+										<p class='mb-1'>Total (<span id='cart-checkout-total-items'></span> Items):</p>
+										<h4 id='cart-checkout-total-amount' class='fw-semibold'></h4>
 									</div>	
 									<button id='place-order-btn' class='btn btn-lg btn-primary'>Place Order</button>
 								</div>
@@ -201,13 +184,14 @@
                             <div class='modal-body'>
                                 <form id='add-address-form' class='needs-validation' novalidate='true'>
                                     <div class='mb-3 has-validation'>
-                                        <label for='cs-name' class='form-label'>First name and Last name of receiver</label>
-                                        <div class='input-group'>
-                                            <input id='new-shipping-fname' type='text' aria-label='First name' class='form-control' data-fb='First Name' required='true' pattern='[A-Za-z\s]+'/>
-                                            <input id='new-shipping-lname' type='text' aria-label='Last name' class='form-control' data-fb='Last Name' required='true' pattern='[A-Za-z\s]+'/>
-											<div id='new-shipping-fname-invalid-fb' class="invalid-feedback"></div>
-											<div id='new-shipping-lname-invalid-fb' class="invalid-feedback"></div>
-                                        </div>
+                                        <label for='cs-name' class='form-label'>First name</label>
+                                        <input id='new-shipping-fname' type='text' aria-label='First name' class='form-control' data-fb='First Name' required='true' pattern='[A-Za-z\s]+'/>
+										<div id='new-shipping-fname-invalid-fb' class="invalid-feedback"></div>
+                                    </div>
+									<div class='mb-3 has-validation'>
+                                        <label for='cs-name' class='form-label'>Last name</label>
+										<input id='new-shipping-lname' type='text' aria-label='Last name' class='form-control' data-fb='Last Name' required='true' pattern='[A-Za-z\s]+'/>
+										<div id='new-shipping-lname-invalid-fb' class="invalid-feedback"></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
                                         <label for='cs-contact-number' class='form-label'>Contact Number</label>
@@ -241,7 +225,7 @@
 				<xsl:call-template name='log-out-modal'/>
 				<xsl:call-template name='toast-container'/>
 
-				<script type='module' src='../../../script/customer/cs_ws_checkout.js'></script>
+				<script type='module' src='../../../script/customer/cs_cart_checkout.js'></script>
 			</body>
 		</html>
 	</xsl:template>

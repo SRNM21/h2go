@@ -1,5 +1,9 @@
 import '../main.js'
 
+import {
+    toPeso
+} from '../../util/helper.js'
+
 // #region LOAD ORDER DETAILS
 
 const params = new URLSearchParams(window.location.search)
@@ -17,6 +21,7 @@ const orderDetailsCustomerName = $('#od-cs-name')
 const orderDetailsCustomerGender = $('#od-cs-gender')
 const orderDetailsCustomerGenderIcon = $('#od-cs-gender-icon')
 const orderDetailsCustomerContactNum = $('#od-cs-contact-num')
+const orderDetailsCustomerOrderMode = $('#od-cs-order-mode')
 const orderDetailsCustomerAddress = $('#od-cs-address')
 const orderDetailsUniqueItems = $('#od-cs-unique-items')
 const orderDetailsTotalItems = $('#od-cs-total-items')
@@ -67,7 +72,7 @@ function loadOrders()
     }
 
     const orderedProducts = orderDetails.find('ordered-products ordered-product')
-    orderDetailsTotalAmount.text(orderDetails.find('order-total').text())
+    orderDetailsTotalAmount.text(toPeso(orderDetails.find('order-total').text()))
 
     let index = 1
     let totalItems = 0
@@ -87,7 +92,7 @@ function loadOrders()
                 <td class="fw-semibold">${index++}</td>
                 <td>${productName}</td>
                 <td>${quantity}</td>
-                <td>PHP ${amount}</td>
+                <td>${toPeso(amount)}</td>
             </tr>
         `
         orderDetailsTableBody.append(html) 
@@ -117,6 +122,7 @@ function loadOrders()
     orderDetailsCustomerGender.html(gender == 'M' ? 'Male' : 'Female')
     orderDetailsCustomerGenderIcon.html(gender == 'M' ? maleIcon : femaleIcon)
     orderDetailsCustomerContactNum.html(customerDetails.find('contact-number'))
+    orderDetailsCustomerOrderMode.html(orderDetails.find('order-type'))
     orderDetailsCustomerAddress.html(customerDetails.find('address'))
 
     orderDetailsUniqueItems.html(`${--index} Unique Items`)

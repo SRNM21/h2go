@@ -1,5 +1,10 @@
 import '../main.js'
 
+import {
+    toPeso
+} from '../../util/helper.js'
+
+
 //* TABLES
 const allTable = $('#datatable-orders')
 const pendingTable = $('#datatable-orders-pending')
@@ -17,16 +22,16 @@ tableArr.forEach(e => {
     new DataTable(`#${e.attr('id')}`, {
         columnDefs: [
             {
-                render: (data) =>  new Date($(data).text().replace(' ', 'T')).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
+                render: (data) => new Date($(data).text().replace(' ', 'T')).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
                 targets: 0
             },
             {
-                render: (data) =>  `PHP ${(Math.round($(data).text() * 100) / 100).toFixed(2)}`,
-                targets: 4
+                render: (data) => toPeso($(data).text()),
+                targets: 5
             },
             {
-                render: (data) =>  `<h5><span class='badge order-status status-${$(data).text().replaceAll(' ', '-').toLowerCase()}'>${data}</span></h5>`,
-                targets: 5
+                render: (data) => `<h5><span class='badge order-status status-${$(data).text().replaceAll(' ', '-').toLowerCase()}'>${data}</span></h5>`,
+                targets: 6
             },
         ]
     })

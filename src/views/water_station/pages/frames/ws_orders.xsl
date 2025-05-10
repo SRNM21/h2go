@@ -35,7 +35,7 @@
 								<span class='me-2'>
 									<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M11.25 12.75H5.5V11.25H11.25V5.5H12.75V11.25H18.5V12.75H12.75V18.5H11.25V12.75Z' fill='#FAFAFA'/></svg>
 								</span>
-								<p class='text-white'>Create Order</p>
+								Create Order
 							</a>
 						</div>
 					</header>
@@ -65,6 +65,7 @@
 											<th scope="col">Time Ordered</th>
 											<th scope="col">Order ID</th>
 											<th scope="col">Name</th>
+											<th scope="col">Mode</th>
 											<th scope="col">Total Items</th>
 											<th scope="col">Order Total</th>
 											<th scope="col">Status</th>
@@ -84,6 +85,7 @@
 												<td><p><xsl:value-of select='time-ordered'/></p></td>
 												<td><p><xsl:value-of select='@id'/></p></td>
 												<td><p><xsl:value-of select='$customer/personal-details/name'/></p></td>
+												<td><p><xsl:value-of select='order-type'/></p></td>
 												<td><p><xsl:value-of select='$total-items'/></p></td>
 												<td><p><xsl:value-of select='order-total'/></p></td>
 												<td><p><xsl:value-of select='status'/></p></td>
@@ -106,6 +108,7 @@
 											<th scope="col">Time Ordered</th>
 											<th scope="col">Order ID</th>
 											<th scope="col">Name</th>
+											<th scope="col">Mode</th>
 											<th scope="col">Total Items</th>
 											<th scope="col">Order Total</th>
 											<th scope="col">Status</th>
@@ -125,6 +128,7 @@
 												<td><p><xsl:value-of select='time-ordered'/></p></td>
 												<td><p><xsl:value-of select='@id'/></p></td>
 												<td><p><xsl:value-of select='$customer/personal-details/name'/></p></td>
+												<td><p><xsl:value-of select='order-type'/></p></td>
 												<td><p><xsl:value-of select='$total-items'/></p></td>
 												<td><p><xsl:value-of select='order-total'/></p></td>
 												<td><p><xsl:value-of select='status'/></p></td>
@@ -147,6 +151,7 @@
 											<th scope="col">Time Ordered</th>
 											<th scope="col">Order ID</th>
 											<th scope="col">Name</th>
+											<th scope="col">Mode</th>
 											<th scope="col">Total Items</th>
 											<th scope="col">Order Total</th>
 											<th scope="col">Status</th>
@@ -166,6 +171,7 @@
 												<td><p><xsl:value-of select='time-ordered'/></p></td>
 												<td><p><xsl:value-of select='@id'/></p></td>
 												<td><p><xsl:value-of select='$customer/personal-details/name'/></p></td>
+												<td><p><xsl:value-of select='order-type'/></p></td>
 												<td><p><xsl:value-of select='$total-items'/></p></td>
 												<td><p><xsl:value-of select='order-total'/></p></td>
 												<td><p><xsl:value-of select='status'/></p></td>
@@ -188,6 +194,7 @@
 											<th scope="col">Time Ordered</th>
 											<th scope="col">Order ID</th>
 											<th scope="col">Name</th>
+											<th scope="col">Mode</th>
 											<th scope="col">Total Items</th>
 											<th scope="col">Order Total</th>
 											<th scope="col">Status</th>
@@ -207,6 +214,7 @@
 												<td><p><xsl:value-of select='time-ordered'/></p></td>
 												<td><p><xsl:value-of select='@id'/></p></td>
 												<td><p><xsl:value-of select='$customer/personal-details/name'/></p></td>
+												<td><p><xsl:value-of select='order-type'/></p></td>
 												<td><p><xsl:value-of select='$total-items'/></p></td>
 												<td><p><xsl:value-of select='order-total'/></p></td>
 												<td><p><xsl:value-of select='status'/></p></td>
@@ -229,6 +237,7 @@
 											<th scope="col">Time Ordered</th>
 											<th scope="col">Order ID</th>
 											<th scope="col">Name</th>
+											<th scope="col">Mode</th>
 											<th scope="col">Total Items</th>
 											<th scope="col">Order Total</th>
 											<th scope="col">Status</th>
@@ -248,6 +257,7 @@
 												<td><p><xsl:value-of select='time-ordered'/></p></td>
 												<td><p><xsl:value-of select='@id'/></p></td>
 												<td><p><xsl:value-of select='$customer/personal-details/name'/></p></td>
+												<td><p><xsl:value-of select='order-type'/></p></td>
 												<td><p><xsl:value-of select='$total-items'/></p></td>
 												<td><p><xsl:value-of select='order-total'/></p></td>
 												<td><p><xsl:value-of select='status'/></p></td>
@@ -270,6 +280,7 @@
 											<th scope="col">Time Ordered</th>
 											<th scope="col">Order ID</th>
 											<th scope="col">Name</th>
+											<th scope="col">Mode</th>
 											<th scope="col">Total Items</th>
 											<th scope="col">Order Total</th>
 											<th scope="col">Status</th>
@@ -289,6 +300,7 @@
 												<td><p><xsl:value-of select='time-ordered'/></p></td>
 												<td><p><xsl:value-of select='@id'/></p></td>
 												<td><p><xsl:value-of select='$customer/personal-details/name'/></p></td>
+												<td><p><xsl:value-of select='order-type'/></p></td>
 												<td><p><xsl:value-of select='$total-items'/></p></td>
 												<td><p><xsl:value-of select='order-total'/></p></td>
 												<td><p><xsl:value-of select='status'/></p></td>

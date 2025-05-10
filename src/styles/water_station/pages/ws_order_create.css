@@ -51,18 +51,28 @@
     font-weight: 600;
 }
 
-/* .btn-outline-danger
-{
-    color: var(--bs-danger) !important;
-} */
-
-/* .btn-outline-danger:hover, .btn-danger
-{
-    color: white !important;
-} */
-
 .mod-img
 {
     height: 24px;
     width: 24px;
+}
+
+.decrement-btn
+{
+    background-color: var(--warning-dark) !important;
+}
+
+.decrement-btn:hover, .decrement-btn:active, .decrement-btn:focus
+{
+    background-color: var(--warning-dark-2) !important;
+}
+
+.remove-btn
+{
+    background-color: var(--danger) !important;
+}
+
+.remove-btn:hover, .remove-btn:active, .remove-btn:focus
+{
+    background-color: var(--danger-dark) !important;
 }

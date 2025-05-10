@@ -51,3 +51,14 @@
 {
     color: var(--danger) !important;
 }
+
+.acc-img-profile
+{
+    height: 36px;
+    width: 36px;
+}
+
+.sb-account-info-holder
+{
+    white-space: nowrap;
+}

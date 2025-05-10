@@ -1,13 +1,17 @@
 import '../main.js'
+
 import {
     validateEmail,
     validateRequired
 } from '../../util/validation.js'
 
+import {
+    notify
+} from '../../util/helper.js'
+
 var WSACC = []
 preLoadAccounts()
 
-const toastContainer = $('#toast-container')
 const loadingModal = $('#loading-modal')
 
 const bcrypt = dcodeIO.bcrypt
@@ -115,28 +119,6 @@ function login(account)
     // })
 
     window.location = '../pages/ws_p_dashboard.xml'
-}
-
-function notify(type, content)
-{
-    let toast = $(`
-        <div class='toast toast-${type} align-items-center show' role='alert' aria-live='assertive' aria-atomic='true'>
-            <div class='d-flex'>
-                <div class='toast-body'>
-                    ${content}
-                </div>
-                <button type='button' class='btn-close me-2 m-auto' data-bs-dismiss='toast' aria-label='Close'></button>
-            </div>
-        </div>    
-    `)
-
-    toastContainer.append(toast)
-
-    setTimeout(function() {
-        toast.fadeOut('slow', function() {
-            $(this).remove()
-        })
-    }, 5000)
 }
 
 showPassword.on('click', function () 

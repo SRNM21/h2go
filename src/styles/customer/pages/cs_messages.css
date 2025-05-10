@@ -1,4 +1,5 @@
-@import url('../pages/ws_frame_setup.css');
+@import url('../pages/cs_frame_setup.css');
+
 
 .section
 {
@@ -37,24 +38,24 @@
     max-width: 250px;
 }
 
-.messgage-row[data-sender='ws']
+.messgage-row[data-sender='cs']
 {
     justify-content: end;
 }
 
-.messgage-row[data-sender='ws'] .message-tooltip 
+.messgage-row[data-sender='cs'] .message-tooltip 
 {
     right: 105%;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.messgage-row[data-sender='cs']
+.messgage-row[data-sender='ws']
 {
     justify-content: left;
 }
 
-.messgage-row[data-sender='cs'] .message-tooltip 
+.messgage-row[data-sender='ws'] .message-tooltip 
 {
     left: 105%;
     top: 50%;
@@ -73,12 +74,12 @@
     white-space: normal;
 }
 
-.messgage-row[data-sender='ws'] > .message-bubble
+.messgage-row[data-sender='cs'] > .message-bubble
 {
     background-color: var(--accent-color);
 }
 
-.messgage-row[data-sender='cs'] > .message-bubble
+.messgage-row[data-sender='ws'] > .message-bubble
 {
     background-color: gray;
 }

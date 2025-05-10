@@ -82,3 +82,12 @@
     height: 20px;
     width: 20px;
 }
+
+.btn-outline-primary svg 
+{
+    transition: fill .15s ease-in-out;
+}
+
+.btn-outline-primary:hover svg{
+    fill: white !important;
+}

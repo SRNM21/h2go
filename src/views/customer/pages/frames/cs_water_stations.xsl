@@ -82,7 +82,6 @@
 					</main>
 				</div>
 				
-
 				<xsl:call-template name='log-out-modal'/>
 				
 				<script type='module' src='../../../script/customer/cs_water_stations.js'></script>

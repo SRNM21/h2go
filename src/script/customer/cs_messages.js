@@ -7,7 +7,7 @@ const contactsProfile = $('.contact-profile')
 contactsProfile.each((_, profile) => {
     
     let temp = $(profile)
-    let name = temp.data('customer-name').split(' ')
+    let name = temp.data('water-station-name').split(' ')
     temp.attr('src', `https://avatar.iran.liara.run/username?username=${name[0]}+${name[1]}`)
 })
 
@@ -116,6 +116,7 @@ function search()
 
 // #endregion SEARCH CONTACTS
 
+
 // #region CONTACTS ACTIONS
 
 var xmlData
@@ -131,7 +132,7 @@ function contactClick(e)
     let curr = $(e.currentTarget)
     
     let messageID = curr.data('message-id')
-    let customerName = curr.data('customer-name')
+    let waterStationName = curr.data('water-station-name')
     let img = curr.find('.contact-profile').attr('src')
 
     $.ajax({
@@ -140,7 +141,7 @@ function contactClick(e)
         success: function(xml)
         {
             xmlData = $(xml)
-            loadContactMessages(messageID, customerName, img)
+            loadContactMessages(messageID, waterStationName, img)
         },
         error: function(xhr, status, error) 
         {
@@ -158,13 +159,13 @@ function contactClick(e)
     })
 }
 
-function loadContactMessages(messageID, customerName, img)
+function loadContactMessages(messageID, waterStationName, img)
 {    
-    currentMessageName.text(customerName)
+    currentMessageName.text(waterStationName)
     currentMessageImg.attr('src', img)
     messageContainer.empty()
 
-    const message = xmlData.find(`water-station messages message[id = ${messageID}] chats chat`)
+    const message = xmlData.find(`customers messages message[id = ${messageID}] chats chat`)
 
     message.each(function() 
     {
@@ -207,7 +208,7 @@ function sendMessage()
     let date = new Date()
     let dateTime = date.toLocaleDateString('en-US', options)
     
-    let template = $('<div class="mb-2 d-flex messgage-row" data-sender="ws"></div>')
+    let template = $('<div class="mb-2 d-flex messgage-row" data-sender="cs"></div>')
     let messageBubble = $('<span class="message-bubble rounded-3 p-3"></span>')
     let tooltip = $(`<span class="message-tooltip p-2 rounded text-center">${dateTime}</span>`)
 

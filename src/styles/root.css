@@ -92,9 +92,9 @@
     --ws-19:            42px;
     --ws-20:            44px;
 
-    --sidebar-w:        92px;
+    --sidebar-w:        90px;
     --sidebar-w-hover:  250px;
-    --header-h:         78px
+    --header-h:         80px;
 }
 
 /** OVERWRITE BS CLASS */

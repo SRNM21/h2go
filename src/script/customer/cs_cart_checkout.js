@@ -1,6 +1,10 @@
 import '../main.js'
 
 import {
+    Session
+} from '../../util/session.js'
+
+import {
     validateRequired,
     validateName,
     validatePhoneNumber,
@@ -12,86 +16,78 @@ import {
     notify
 } from '../../util/helper.js'
 
-// #region LOAD ORDER
+// #region LOAD CART
 
-var waterStationData
-var checkedOutProduct
+const cart = Session.get('cart')
+const summaryTbody = $('#cart-checkout-summary-tbody')
 
-const params = new URLSearchParams(window.location.search)
-const waterStationID = params.get('ws-id')  
-const productID = params.get('product-id')  
-const productQuantity = params.get('qty')  
+const cartCheckoutTotalItems = $('#cart-checkout-total-items')
+const cartCheckoutTotalAmount = $('#cart-checkout-total-amount')
 
-const currentWaterStation = $('#current-water-station')
-
-const shopName = $('#shop-name')
-const productImage = $('#product-image-data img')
-const productName = $('#product-name')
-const productAmount = $('#product-amount')
-const productQty = $('#product-qty')
-const productTotalAmount = $('#product-total-amount')
-
-const totalItems = $('#total-items')
-const checkOutTotalAmount = $('#total-amount')
+var TOTAL_ITEMS = 0
+var TOTAL_AMOUNT = 9
 
 $(window).on('load', function()
 {   
-    $.ajax({
-        url: '../../../../data/client/h2go_clients.xml',
-        dataType: 'xml',
-        success: (xml) => {
-            waterStationData = $(xml).find(`water-station[id='${waterStationID}']`)
-            checkedOutProduct = waterStationData.find(`product[id='${productID}']`)
-            loadDetails()
-        },
-        error: (xhr, status, error) => {
-            let errorPage = $(`
-                <div class="card error-page">
-                    <div class="card-body">
-                        <h5 class="card-title">Error Occured:</h5>
-                        <p class="card-text">Invalid water station details (${error} | ${status}).</p>
-                    </div>
-                </div>
-            `)
+    populateSummaryTbody()
 
-            $('main').append(errorPage)
-        }
-    })   
+    cartCheckoutTotalItems.text(TOTAL_ITEMS)
+    cartCheckoutTotalAmount.text(toPeso(TOTAL_AMOUNT))
 })
 
-function loadDetails() 
-{
-    let waterStationName = waterStationData.find('water-station-details name').text()
-    currentWaterStation.text(waterStationName)
-    currentWaterStation.attr('href', `../../../views/customer/pages/cs_p_water_station_details.xml?ws-id=${waterStationID}&ws-name=${waterStationName}`)
-    
-    let qty = parseInt(productQuantity)
+function populateSummaryTbody()
+{    
+    TOTAL_ITEMS = 0
+    TOTAL_AMOUNT = 0
 
-    shopName.text(waterStationName)
-    totalItems.text(`${qty} ${qty > 1 ? 'Items' : 'Item'}`)
+    summaryTbody.empty() 
 
-    loadProduct()
+    Object.entries(cart).forEach(([storeName, products]) => {
+        const storeRow = $(`
+            <tr class='border-top'>
+                <td colSpan='4'>
+                    <div class='d-flex align-items-center ms-auto'>
+                        <span>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 6V4H20V6H4ZM4 20V14H3V12L4 7H20L21 12V14H20V20H18V14H14V20H4ZM6 18H12V14H6V18ZM5.05 12H18.95L18.35 9H5.65L5.05 12Z"
+                                    fill="#005691"/>
+                            </svg>
+                        </span>
+                        <h6 id='shop-name'>${storeName}</h6>
+                    </div>
+                </td>
+            </tr>
+        `)
+
+        summaryTbody.append(storeRow)
+
+        Object.values(products).forEach(product => {
+
+            const total = (product.qty * product.amount)
+            const totalText = toPeso(total)
+
+            TOTAL_AMOUNT += total
+            TOTAL_ITEMS += product.qty
+
+            const productRow = $(`
+                <tr>
+                    <td id='product-image-data' class='product-image-data d-flex align-items-center align-middle'>
+                        <img src='../../../assets/images/products/${product.image}' alt=''/>
+                        <p id='product-name' class='ms-2'>${product.product} (${product.type})</p>
+                    </td>
+                    <td id='product-amount' class='align-middle text-center'>${toPeso(product.amount)}</td>
+                    <td id='product-qty' class='align-middle text-center'>${product.qty}</td>
+                    <td id='product-total-amount' class='align-middle text-center'>${totalText}</td>
+                </tr>
+            `)
+            
+            summaryTbody.append(productRow)
+        })
+    })
 }
 
-function loadProduct()
-{
-    let productDataName = checkedOutProduct.find('name').text()
-    let productDataType = checkedOutProduct.find('type').text()
-    let productDataImage = `../../../assets/images/products/${checkedOutProduct.find('image').text()}`
-    let productDataPrice = checkedOutProduct.find('price').text()
-    let productDataAmount = toPeso(productDataPrice)
-    let totalAmount = parseFloat(productDataPrice) * parseInt(productQuantity)
-    let totalAmountFormat = toPeso(totalAmount)
-
-    productName.text(`${productDataName} (${productDataType})`)
-    productImage.attr('src', productDataImage)
-    productAmount.text(productDataAmount)
-    productQty.text(productQuantity)
-    productTotalAmount.text(totalAmountFormat)
-    checkOutTotalAmount.text(totalAmountFormat)
-}
-
-// #endregion LOAD ORDER
+// #endregion LOAD CART 
 
 // #region MOD
 
@@ -109,17 +105,6 @@ modType.on('click', function ()
 })
 
 // #endregion MOD
-
-// #region PLACE ORDER
-
-const placeOrderBtn = $('#place-order-btn')
-
-placeOrderBtn.on('click', () => {
-    let waterStationName = waterStationData.find('water-station-details name').text()
-    window.location.href = `../../../views/customer/pages/cs_p_water_station_details.xml?from-order=true&ws-id=${waterStationID}&ws-name=${waterStationName}`
-})
-
-// #region PLACE ORDER
 
 // #region SELECT ADDRESS
 
@@ -320,3 +305,13 @@ function saveEditChanges()
 }
 
 // #endregion EDIT ADDRESS
+
+// #region PLACE ORDER
+
+const placeOrderBtn = $('#place-order-btn')
+
+placeOrderBtn.on('click', () => {
+    window.location.href = `../../../views/customer/pages/cs_p_cart.xml?from-order=true`
+})
+
+// #region PLACE ORDER

@@ -10,6 +10,7 @@
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/cs_sidebar.xsl'/>
 	<xsl:include href='../../../../components/cs_logout_modal.xsl'/>
+	<xsl:include href='../../../../components/toast_container.xsl'/>
 
     <xsl:template match='/'>
 		<html>
@@ -46,6 +47,9 @@
 										<p id='ws-review-nums' class='review-nums'></p>
 									</div>
 									<p id='ws-status' class='ws-status fw-semibold mt-2'></p>
+									<button type='button' class='btn btn-sm btn-outline-primary mt-4'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#005691"><path d="M250-410h300v-60H250v60Zm0-120h460v-60H250v60Zm0-120h460v-60H250v60ZM100-118.46v-669.23Q100-818 121-839q21-21 51.31-21h615.38Q818-860 839-839q21 21 21 51.31v455.38Q860-302 839-281q-21 21-51.31 21H241.54L100-118.46ZM216-320h571.69q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-455.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H172.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v523.08L216-320Zm-56 0v-480 480Z"/></svg>
+										Message
+									</button>
 								</div>
 								<hr/>
 								<div class='ws-more-details p-3'>
@@ -114,12 +118,13 @@
 									<div class='ms-3 section'>
 										<div class='view-product-name-holder mb-3'>
 											<h5 id='view-product-name' class='fw-semibold'>-----</h5>
+											<h6 id='view-product-type'>----</h6>
 										</div>
 										<div class='view-product-description-holder mb-3'>
 											<p id='view-product-description'>-----</p>
 										</div>
 										<div class='view-product-details d-flex flex-column mb-3'>
-											<span class='d-flex fw-semibold '>PHP <p id='view-product-price' class='ms-1'> ---,---.--</p></span>
+											<span id='view-product-price' class='d-flex fw-semibold '></span>
 										</div>
 									</div>
 								</div>
@@ -144,19 +149,15 @@
 							</div>
 							<div class='modal-footer'>
 								<button type='button' class='btn btn-outline-primary view-product-modal-btns' data-bs-dismiss='modal'>Close</button>
-								<button type='button' id='add-to-cart-btn' class='btn btn-primary view-product-modal-btns'>Add to Cart</button>
+								<button type='button' id='add-to-cart-btn' class='btn btn-primary view-product-modal-btns' data-bs-dismiss='modal'>Add to Cart</button>
 								<button type='button' id='buy-now-btn' class='btn btn-primary view-product-modal-btns'>Buy Now</button>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- TODO ADD MESSAGE WATER STATION -->
-
 				<xsl:call-template name='log-out-modal'/>
-
-				<!--* TOAST -->
-				<div id='toast-container' class='toast-container position-fixed bottom-0 end-0 p-3'></div>
+				<xsl:call-template name='toast-container'/>
 				
 				<script type='module' src='../../../script/customer/cs_water_station_details.js'></script>
 			</body>

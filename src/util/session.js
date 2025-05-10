@@ -1,5 +1,3 @@
-
-// ! WILL BE USED IF NEED A WORKING LOGIN
 export class Session 
 {
     static set(key, value) 
@@ -19,6 +17,16 @@ export class Session
         {
             return value
         }
+    }
+
+    static getAll() 
+    {
+        const all = {}
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i)
+            all[key] = this.get(key)
+        }
+        return all
     }
   
     static remove(key) 

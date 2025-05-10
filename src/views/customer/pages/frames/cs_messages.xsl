@@ -3,33 +3,33 @@
 	<xsl:output method='html' indent='yes'/>
 
 	<!--* DATA -->
-	<xsl:variable name='water-station-id' select="document('../../../../../data/system/water_station/ws_data.xml')/water-station-id"/>
-	<xsl:variable name='water-station-data' select="document('../../../../../data/client/h2go_clients.xml')"/>
-	<xsl:variable name='water-station' select='$water-station-data/h2go/water-stations/water-station[@id = $water-station-id]'></xsl:variable>
-	<xsl:variable name='customers' select='$water-station-data/h2go/customers'></xsl:variable>
-	
+	<xsl:variable name='customer-id' select="document('../../../../../data/system/customer/cs_data.xml')/customer-id"/>
+	<xsl:variable name='customer-data' select="document('../../../../../data/client/h2go_clients.xml')"/>
+	<xsl:variable name='customer' select='$customer-data/h2go/customers/customer[@id = $customer-id]'/>
+
 	<!--* COMPONENTS -->
-	<xsl:include href='../../../../components/ws_sidebar.xsl'/>
-	<xsl:include href='../../../../components/ws_logout_modal.xsl'/>
+	<xsl:include href='../../../../components/cs_sidebar.xsl'/>
+	<xsl:include href='../../../../components/cs_logout_modal.xsl'/>
+	<xsl:include href='../../../../components/toast_container.xsl'/>
 
     <xsl:template match='/'>
 		<html>
 			<head>
-                <link rel='stylesheet' href='../../../styles/water_station/pages/ws_messages.css'/>
+                <link rel='stylesheet' href='../../../styles/customer/pages/cs_messages.css'/>
 			</head>
 			<body class='d-flex w-100 h-100'>
-				<xsl:call-template name='ws-side-bar'/>
-				 
-				<div class='cont w-100'>
+				<xsl:call-template name='cs-side-bar'/>
+				
+                <div class='cont d-flex flex-column h-100 w-100'>
 
 					<!--* HEADER -->
 					<header class='d-flex'>
 						<h4>Messages</h4>
-					</header>
+                    </header>
 
 					<main>
-						<div class='d-flex h-100'>
-							<div class='section contacts-section d-flex flex-column'>
+                        <div class='d-flex h-100'>
+                            <div class='section contacts-section d-flex flex-column'>
 
 								<div class=''>	
 									<div class='input-group mb-3'>
@@ -42,20 +42,20 @@
 
 								<div id='contact-list' class='contact-list section d-flex flex-column border rounded overflow-auto'>	
 
-									<xsl:for-each select='$water-station/messages/message'>
-										<xsl:variable name='customer-id' select='./customer-id'/>
-										<xsl:variable name='customer' select='$customers/customer[@id=$customer-id]'/>
+									<xsl:for-each select='$customer/messages/message'>
+										<xsl:variable name='water-station-id' select='water-station-id'/>
+										<xsl:variable name='water-station' select='$customer-data/h2go/water-stations/water-station[@id=$water-station-id]'/>
 
 										<div class='contact mb-3 p-3 d-flex w-100'
 											data-message-id='{@id}'
-											data-customer-name='{$customer/personal-details/name}'
+											data-water-station-name='{$water-station/water-station-details/name}'
 										>
 											<span class='me-3 position-relative placeholder-glow' aria-hidden="true">
-												<img src='' alt='Contact Profile' class='placeholder-glow contact-profile' data-customer-name='{$customer/personal-details/name}'/>
+												<img src='' alt='Contact Profile' class='placeholder-glow contact-profile' data-water-station-name='{$water-station/water-station-details/name}'/>
 												<span class="placeholder position-absolute rounded-circle top-0 start-0"></span>
 											</span>
 											<div class='d-flex flex-column'>
-												<p class='contact-name'><xsl:value-of select='$customer/personal-details/name'/></p>
+												<p class='contact-name'><xsl:value-of select='$water-station/water-station-details/name'/></p>
 												<span class="d-inline-block text-truncate">
 													<xsl:value-of select='./chats/chat[last()]/content'/>
 												</span>
@@ -68,13 +68,13 @@
 							</div>
 							<div class='section message-section ms-4 d-flex flex-column border'>
 								
-								<xsl:variable name='message' select='$water-station/messages/message[position() = "1"]'/>
-								<xsl:variable name='customer-id' select='$message/customer-id'/>
-								<xsl:variable name='customer' select='$customers/customer[@id=$customer-id]'/>
+								<xsl:variable name='message' select='$customer/messages/message[position() = "1"]'/>
+								<xsl:variable name='water-station-id' select='$message/water-station-id'/>
+                                <xsl:variable name='water-station' select='$customer-data/h2go/water-stations/water-station[@id=$water-station-id]'/>
 
 								<div class='contact-in-message mb-3 p-3 d-flex w-100 border-bottom'>
 									<span class='me-3 position-relative placeholder-glow' aria-hidden="true">
-										<img id='current-message-img' src='' alt='Contact Profile' class='placeholder-glow contact-profile' data-customer-name='{$customer/personal-details/name}'/>
+										<img id='current-message-img' src='' alt='Contact Profile' class='placeholder-glow contact-profile' data-water-station-name='{$water-station/water-station-details/name}'/>
 										<span class="placeholder position-absolute rounded-circle top-0 start-0"></span>
 									</span>
 									<div class='d-flex align-items-center'>
@@ -104,14 +104,16 @@
 										</button>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</main>
 				</div>
-
+                
 				<xsl:call-template name='log-out-modal'/>
-				
-				<script type='module' src='../../../script/water_station/ws_messages.js'></script>
+				<xsl:call-template name='toast-container'/>
+
+				<script type='module' src='../../../script/customer/cs_messages.js'></script>
 			</body>
 		</html>
 	</xsl:template>

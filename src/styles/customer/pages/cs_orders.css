@@ -1,0 +1,110 @@
+@import url('../pages/cs_frame_setup.css');
+
+.section 
+{
+    flex: 1;
+}
+
+.tab-content
+{
+    max-width: var(--bs-breakpoint-lg);
+}
+
+.orders-details-section
+{
+    max-width: 600px;
+}
+
+.filter-dd
+{
+    border-width: 1px !important;
+    border-style: solid !important;
+    font-size: var(--body-small);
+    padding: var(--ws-2) var(--ws-4);
+}
+
+.filter-dd.active
+{
+    background-color: var(--secondary-color) !important;
+}
+
+.dropdown-item:active
+{
+    background-color: var(--ghost-color) !important;
+}
+
+.dropdown-item.active
+{
+    background-color: var(--tertiary-color) !important;
+}
+
+.product-image-holder
+{
+    height: 100px;
+    width: 100px;
+}
+
+.product-image-holder img
+{
+    height: 100%;
+    width: 100%;
+    flex: 1;
+}
+
+.order-product-name
+{
+    font-size: var(--body-large);
+}
+
+.status
+{
+    font-size: var(--body-small);
+}
+
+.status[data-status='Pending'], .status[data-status='Pending'] > *
+{
+    background-color: var(--gray-light-4) !important;
+    color: var(--gray-dark) !important;
+    border: 1px solid var(--gray-dark) !important;
+}
+
+.status[data-status='In Progress'], .status[data-status='In Progress'] > *
+{
+    background-color: var(--info-light-5) !important;
+    color: var(--info-dark) !important;
+    border: 1px solid var(--info-dark) !important;
+}
+
+.status[data-status='Out for Delivery'], .status[data-status='Out for Delivery'] > *
+{
+    background-color: var(--warning-light-3) !important;
+    color: var(--warning-dark-2) !important;
+    border: 1px solid var(--warning-dark-2) !important;
+}
+
+.status[data-status='Completed'], .status[data-status='Completed'] > *
+{
+    background-color: var(--success-light-6) !important;
+    color: var(--success) !important;
+    border: 1px solid var(--success) !important;
+}
+
+.status[data-status='Declined'], .status[data-status='Declined'] > *
+{
+    background-color: var(--danger-light-4) !important;
+    color: var(--danger) !important;
+    border: 1px solid var(--danger) !important;
+}
+
+.store-card
+{
+    user-select: none;
+    cursor: pointer;
+    transition: all .15s ease-in-out;
+}
+
+.store-card:hover
+{
+    box-shadow: var(--bs-box-shadow) !important;
+    border-color: var(--accent-color);
+}

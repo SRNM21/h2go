@@ -1,4 +1,5 @@
 import '../main.js'
+
 import {
     validateEmail,
     validateRequired

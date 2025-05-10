@@ -1,0 +1,34 @@
+@import url('../pages/cs_frame_setup.css');
+
+.section 
+{
+    flex: 1;
+}
+
+.cart-details-section
+{
+    max-width: 600px;
+}
+
+.product-image-holder
+{
+    height: 100px;
+    width: 100px;
+}
+
+.product-image-holder img
+{
+    height: 100%;
+    width: 100%;
+    flex: 1;
+}
+
+.cart-product-name
+{
+    font-size: var(--body-large);
+}
+
+.qty-group
+{
+    width: 130px;
+}

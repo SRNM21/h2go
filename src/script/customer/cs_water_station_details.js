@@ -1,5 +1,10 @@
 import '../main.js'
 
+import {
+    toPeso,
+    notify
+} from '../../util/helper.js'
+
 // #region LOAD WATER STATION DETAILS
 
 var waterStationData
@@ -136,6 +141,7 @@ function loadProducts()
 // #region PRODUCT ACTION 
 
 const viewProductTitle = $('#view-product-name')
+const viewProductType = $('#view-product-type')
 const viewProductImage = $('#view-product-image')
 const viewProductStars = $('#view-product-review-stars')
 const viewProductReviews = $('#view-product-review-nums')
@@ -148,17 +154,16 @@ productsHolder.on('click', '.product-card', function (e)
     let product = $(e.currentTarget)
     
     viewProductTitle.text(product.data('product'))
+    viewProductType.text(product.data('type'))
     viewProductImage.attr('src', product.find('.card-img-top').attr('src'))
     viewProductStars.text(product.data('review-stars'))
     viewProductReviews.text(`(${product.data('review-nums')})`)
     viewProductDescription.text(product.data('description'))
-    viewProductPrice.text((Math.round(product.data('price') * 100) / 100).toFixed(2))
+    viewProductPrice.text(toPeso(product.data('price')))
     viewProductStock.text(product.data('stock'))
 
     qtyInput.attr('data-max-stock', product.data('stock'))
 
-    console.log(product.data('product-id'));
-    
     buyNowBtn.attr('data-product-id', product.data('product-id'))
 })
 
@@ -283,6 +288,17 @@ qtyInput.on('input', function()
 
 // #endregion QUANTITY CONTROL
 
+// #region ADD TO CART 
+
+const addToCartBtn = $('#add-to-cart-btn')
+
+addToCartBtn.on('click', function()
+{
+    notify('success', 'Item successfully added to cart.')
+})
+
+// #endregion ADD TO CART 
+
 // #region BUY NOW ACTION
 
 const buyNowBtn = $('#buy-now-btn')
@@ -293,27 +309,3 @@ buyNowBtn.on('click', function ()
 })
 
 // #endregion BUY NOW ACTION
-
-const toastContainer = $('#toast-container')
-
-function notify(type, content)
-{
-    let toast = $(`
-        <div class='toast toast-${type} align-items-center show' role='alert' aria-live='assertive' aria-atomic='true'>
-            <div class='d-flex'>
-                <div class='toast-body'>
-                    ${content}
-                </div>
-                <button type='button' class='btn-close me-2 m-auto' data-bs-dismiss='toast' aria-label='Close'></button>
-            </div>
-        </div>    
-    `)
-
-    toastContainer.append(toast)
-
-    setTimeout(function() {
-        toast.fadeOut('slow', function() {
-            $(this).remove()
-        })
-    }, 5000)
-}

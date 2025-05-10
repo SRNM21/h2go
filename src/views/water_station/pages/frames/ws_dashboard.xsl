@@ -3,7 +3,7 @@
 	<xsl:output method="html" indent="yes"/>
 	
 	<!--* DATA -->
-	<xsl:variable name="water-station-data" select="document('../../../../../data/client/h2go_clients.xml')"/>
+	<xsl:variable name="water-station-data" select="document('../../../../data/client/h2go_clients.xml')"/>
 
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/ws_sidebar.xsl'/>
@@ -67,7 +67,7 @@
 									</div>
 									<div class='card-body'>
 										<div class='d-flex'>
-											<h5 class='card-title me-auto'>PHP 100,000,000.00</h5>
+											<h5 class='card-title me-auto'>₱ 100,000,000.00</h5>
 											<span class='badge text-bg-success p-1 align-middle d-flex align-items-center'>
 												<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path d="M3.55375 17.5479L2.5 16.4941L9.352 9.5921L13.352 13.5921L18.9655 8.04785H16V6.54785H21.5V12.0479H20V9.10185L13.352 15.7499L9.352 11.7499L3.55375 17.5479Z" fill="#31D000"/>
@@ -83,7 +83,7 @@
 									</div>
 									<div class='card-body'>
 										<div class='d-flex'>
-											<h5 class='card-title me-auto'>PHP 100,000,000.00</h5>
+											<h5 class='card-title me-auto'>₱ 100,000,000.00</h5>
 											<span class='badge text-bg-success p-1 align-middle d-flex align-items-center'>
 												<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path d="M3.55375 17.5479L2.5 16.4941L9.352 9.5921L13.352 13.5921L18.9655 8.04785H16V6.54785H21.5V12.0479H20V9.10185L13.352 15.7499L9.352 11.7499L3.55375 17.5479Z" fill="#31D000"/>

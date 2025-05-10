@@ -1,32 +1,8 @@
 import '../main.js'
 
-// #region TOAST
-
-const toastContainer = $('#toast-container')
-
-function notify(content)
-{
-    let toast = $(`
-        <div class="toast toast-success align-items-center show" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    ${content}
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>    
-    `)
-
-    toastContainer.append(toast)
-
-    setTimeout(function() {
-        toast.fadeOut('slow', function() {
-            $(this).remove()
-        })
-    }, 5000)
-}
-
-// #endregion TOAST
+import {
+    notify
+} from '../../util/helper.js'
 
 // #region SORT PRODUCTS
 

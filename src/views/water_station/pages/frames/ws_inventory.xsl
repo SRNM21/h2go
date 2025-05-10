@@ -10,6 +10,7 @@
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/ws_sidebar.xsl'/>
 	<xsl:include href='../../../../components/ws_logout_modal.xsl'/>
+	<xsl:include href='../../../../components/toast_container.xsl'/>
 
     <xsl:template match='/'>
 		<html>
@@ -31,7 +32,7 @@
 										<path d='M11.25 12.75H5.5V11.25H11.25V5.5H12.75V11.25H18.5V12.75H12.75V18.5H11.25V12.75Z' fill='#FAFAFA'/>
 									</svg>
 								</span>
-								<p class='text-white'>Add</p>
+								Add
 							</button>
 						</div>
 					</header>
@@ -350,9 +351,7 @@
 				</div>
 
 				<xsl:call-template name='log-out-modal'/>
-				
-				<!--* TOAST -->
-				<div id='toast-container' class='toast-container position-fixed bottom-0 end-0 p-3'></div>
+				<xsl:call-template name='toast-container'/>
 
 				<script type='module' src='../../../script/water_station/ws_inventory.js'></script>
 			</body>

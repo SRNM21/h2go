@@ -10,6 +10,7 @@
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/ws_sidebar.xsl'/>
 	<xsl:include href='../../../../components/ws_logout_modal.xsl'/>
+	<xsl:include href='../../../../components/toast_container.xsl'/>
 
     <xsl:template match='/'>
 		<html>
@@ -56,7 +57,7 @@
 								<div class='total-amount-section'>
 									<div class='d-flex'>
 										<h4 class='fw-semibold'>TOTAL AMOUNT</h4>
-										<h4 class='fw-semibold ms-auto'>PHP <span id='order-details-total-amount'>0</span></h4>
+										<h4 id='order-details-total-amount' class='fw-semibold ms-auto'></h4>
 									</div>
 								</div>
 							</div>
@@ -78,11 +79,17 @@
 													</span>
 													<p id='od-cs-gender' class="card-text"></p>
 												</div>
-												<div class='d-flex'>
+												<div class='d-flex mb-3'>
 													<span class='me-3'>
 														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.95 21C17.8667 21 15.8083 20.5458 13.775 19.6375C11.7417 18.7292 9.89167 17.4417 8.225 15.775C6.55833 14.1083 5.27083 12.2583 4.3625 10.225C3.45417 8.19167 3 6.13333 3 4.05C3 3.75 3.1 3.5 3.3 3.3C3.5 3.1 3.75 3 4.05 3H8.1C8.33333 3 8.54167 3.07917 8.725 3.2375C8.90833 3.39583 9.01667 3.58333 9.05 3.8L9.7 7.3C9.73333 7.56667 9.725 7.79167 9.675 7.975C9.625 8.15833 9.53333 8.31667 9.4 8.45L6.975 10.9C7.30833 11.5167 7.70417 12.1125 8.1625 12.6875C8.62083 13.2625 9.125 13.8167 9.675 14.35C10.1917 14.8667 10.7333 15.3458 11.3 15.7875C11.8667 16.2292 12.4667 16.6333 13.1 17L15.45 14.65C15.6 14.5 15.7958 14.3875 16.0375 14.3125C16.2792 14.2375 16.5167 14.2167 16.75 14.25L20.2 14.95C20.4333 15.0167 20.625 15.1375 20.775 15.3125C20.925 15.4875 21 15.6833 21 15.9V19.95C21 20.25 20.9 20.5 20.7 20.7C20.5 20.9 20.25 21 19.95 21Z" fill="#005691"/></svg>
 													</span>
 													<p id='od-cs-contact-num' class="card-text"></p>
+												</div>
+												<div class='d-flex'>
+													<span class='me-3'>
+														<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#005691"><path d="M286.15-97.69q-29.15 0-49.57-20.43-20.42-20.42-20.42-49.57 0-29.16 20.42-49.58 20.42-20.42 49.57-20.42 29.16 0 49.58 20.42 20.42 20.42 20.42 49.58 0 29.15-20.42 49.57-20.42 20.43-49.58 20.43Zm387.7 0q-29.16 0-49.58-20.43-20.42-20.42-20.42-49.57 0-29.16 20.42-49.58 20.42-20.42 49.58-20.42 29.15 0 49.57 20.42t20.42 49.58q0 29.15-20.42 49.57Q703-97.69 673.85-97.69ZM211.85-790h555.38q24.54 0 37.11 20.89 12.58 20.88 1.2 42.65L677.38-494.31q-9.84 17.31-26.03 26.96-16.2 9.66-35.5 9.66H324l-46.31 84.61q-3.08 4.62-.19 10 2.88 5.39 8.65 5.39h457.69v60H286.15q-40 0-60.11-34.5-20.12-34.5-1.42-68.89l57.07-102.61L136.16-810H60v-60h113.85l38 80Z"/></svg>
+													</span>
+													<p id='od-cs-order-mode' class="card-text"></p>
 												</div>
 											</div>
 										</div>
@@ -165,8 +172,9 @@
                     </div>
                 </div>
 
-				<xsl:call-template name='log-out-modal'/>
-				
+				<xsl:call-template name='log-out-modal'/>	
+				<xsl:call-template name='toast-container'/>
+
 				<script type='module' src='../../../script/water_station/ws_order_details.js'></script>
 			</body>
 		</html>

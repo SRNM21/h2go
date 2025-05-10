@@ -1,0 +1,74 @@
+@import url('../pages/cs_frame_setup.css');
+
+.wrapper
+{
+    height: fit-content;
+    max-width: var(--bs-breakpoint-lg);
+}
+
+.customer-address-wrapper
+{
+    position: relative;
+    background: white;
+    z-index: 1;
+}
+
+.customer-address-wrapper::before 
+{
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    padding: 4px;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            red 0 10px,
+            white 10px 20px,
+            blue 20px 30px,
+            white 30px 40px
+        );
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    border-radius: var(--bs-border-radius);
+}
+
+.header
+{
+    color: var(--gray-light) !important;
+    font-size: var(--body-small);
+}
+
+.product-image-data
+{
+    width: fit-content;
+}
+
+.product-image-data img 
+{
+    width: 48px;
+    height: 48px;
+}
+
+.mod-img
+{
+    height: 24px;
+    width: 24px;
+}
+
+.selected-address
+{
+    border-color: var(--accent-color) !important;
+}
+
+.address-card
+{
+    cursor: pointer;
+}

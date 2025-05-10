@@ -10,6 +10,7 @@
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/ws_sidebar.xsl'/>
 	<xsl:include href='../../../../components/ws_logout_modal.xsl'/>
+	<xsl:include href='../../../../components/toast_container.xsl'/>
 
     <xsl:template match='/'>
 		<html>
@@ -66,7 +67,7 @@
                                                     <p class='card-text'><xsl:value-of select='type'/></p>
                                                 </div>
 												<div class='d-flex flex-column product-details text-end'>
-                                                    <p class='card-text'>PHP <xsl:value-of select='price'/></p>
+                                                    <p class='card-text product-price'><xsl:value-of select='price'/></p>
                                                     <p class='card-text'>Stock: <xsl:value-of select='stock'/></p>
                                                 </div>
 											</div>
@@ -103,7 +104,7 @@
                                 <div class='d-flex justify-content-center align-items-center'>
                                     <div>
                                         <h6>Total Amount:</h6>
-                                        <h3>PHP <span id='total-amount'>0</span></h3>
+                                        <h3 id='total-amount'></h3>
                                     </div>
                                     <button id='place-order-btn' class='btn btn-primary btn-lg ms-auto' data-bs-toggle='modal' data-bs-target='#place-order-modal'>Place Order</button>
                                 </div>
@@ -125,7 +126,7 @@
                             </div>
                             <div class='modal-footer'>
                                 <button type='button' class='btn btn-outline-primary' data-bs-dismiss='modal'>Cancel</button>
-                                <button id='confirm-remove-btn' type='button' class='btn btn-primary' data-bs-dismiss='modal'>Remove Item</button>
+                                <button id='confirm-remove-btn' type='button' class='btn btn-danger' data-bs-dismiss='modal'>Remove Item</button>
                             </div>
                         </div>
                     </div>
@@ -160,7 +161,7 @@
                             </div>
                             <div class='modal-body'>
                                 
-                                <div class='mb-3'>
+                                <div class='mb-4'>
                                     <table class='table table-hover table-sm'>
                                         <thead>
                                             <tr>
@@ -175,7 +176,7 @@
                                         </tbody>
                                     </table>  
                                 </div>
-                                <div class='d-flex fw-semibold justify-content-center align-items-center mb-3'>
+                                <div class='d-flex fw-semibold justify-content-center align-items-center mb-4'>
                                     <p>Total Amount:</p>
                                     <h4 class='ms-auto'>PHP <span id='order-summary-total-amount'></span></h4>
                                 </div>
@@ -227,44 +228,48 @@
                                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                             </div>
                             <div class='modal-body'>
-                                <form action=''>
-                                    <div class='mb-3'>
-                                        <label for='cs-name' class='form-label'>First name and Last name</label>
-                                        <div class='input-group'>
-                                            <input type='text' aria-label='First name' class='form-control'/>
-                                            <input type='text' aria-label='Last name' class='form-control'/>
-                                        </div>
+                                <form id='customer-details-form' class='needs-validation' novalidate='true'>
+                                    <div class='mb-3 has-validation'>
+                                        <label for='cs-name' class='form-label'>First name</label>
+                                        <input id='customer-details-fname' type='text' aria-label='First name' class='form-control' data-fb='First Name' required='true' pattern='[A-Za-z\s]+'/>
+										<div id='customer-details-fname-invalid-fb' class="invalid-feedback"></div>
                                     </div>
-                                    <div class='mb-3'>
-                                        <label for='cs-contact-num' class='form-label'>Contact Number</label>
-                                        <input type='text' aria-label='Contact Number' class='form-control'/>
+									<div class='mb-3 has-validation'>
+                                        <label for='cs-name' class='form-label'>Last name</label>
+										<input id='customer-details-lname' type='text' aria-label='Last name' class='form-control' data-fb='Last Name' required='true' pattern='[A-Za-z\s]+'/>
+										<div id='customer-details-lname-invalid-fb' class="invalid-feedback"></div>
                                     </div>
-                                    <div class='mb-3'>
+                                    <div class='mb-3 has-validation'>
+                                        <label for='cs-contact-number' class='form-label'>Contact Number</label>
+										<input id='customer-details-contact-num' type='tel' aria-label='Contact Number' class='form-control' maxLength='11' data-fb='Contact Number' required='true'/>
+										<div id='customer-details-contact-num-invalid-fb' class="invalid-feedback"></div>
+                                    </div>
+                                    <div class='mb-3 has-validation'>
                                         <label for='cs-gender' class='form-label'>Gender</label>
-                                        <select id='cs-gender' class='form-select' aria-label='Select Gender'>
-                                            <option selected='true' disabled='true'>Select Gender</option>
-                                            <option value='Male'>Male</option>
-                                            <option value='Female'>Female</option>
+                                        <select id='customer-details-gender' class='form-select' aria-label='Select Gender' data-fb='Gender' required='true'>
+                                            <option value='' selected='true' disabled='true'>Select Gender</option>
+                                            <option value='M'>Male</option>
+                                            <option value='F'>Female</option>
                                         </select>
+										<div id='customer-details-gender-invalid-fb' class="invalid-feedback"></div>
                                     </div>
-                                    <div class='mb-3'>
+                                    <div class='mb-3 has-validation'>
                                         <label for='ws-address' class='form-label'>Address</label>
-                                        <textarea class='form-control' id='ws-address' rows='3'></textarea>
+                                        <textarea id='customer-details-address' class='form-control' rows='3' data-fb='Address' required='true'></textarea>
+										<div id='customer-details-address-invalid-fb' class="invalid-feedback"></div>
                                     </div>
                                 </form>
                             </div>
                             <div class='modal-footer'>
                                 <button type='button' class='btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#place-order-modal'>Back</button>
-                                <button id='confirm-place-order-btn' type='button' class='btn btn-primary' data-bs-dismiss='modal'>Place Order</button>
+                                <button id='confirm-place-order-btn' type='button' class='btn btn-primary'>Place Order</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
 				<xsl:call-template name='log-out-modal'/>
-				
-                <!--* TOAST -->
-				<div id='toast-container' class='toast-container position-fixed bottom-0 end-0 p-3'></div>
+                <xsl:call-template name='toast-container'/>
 
 				<script type='module' src='../../../script/water_station/ws_order_create.js'></script>
 			</body>
