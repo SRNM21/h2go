@@ -1,0 +1,12 @@
+@import url('../pages/cs_frame_setup.css');
+
+.wrapper
+{
+    flex: 1;
+    max-width: var(--bs-breakpoint-lg);
+}
+
+.nav-link.active
+{
+    font-weight: 600;
+}

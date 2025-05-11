@@ -47,7 +47,7 @@
                             <div class='tab-content section orders-section'>
                                 
                                 <!--* ALL ORDERS -->
-                                <div class='tab-pane fade show active pb-1' id='all-orders-pane' role='tabpanel' aria-labelledby='all-orders-tab' tabindex='0'>
+                                <div class='tab-pane fade show active' id='all-orders-pane' role='tabpanel' aria-labelledby='all-orders-tab' tabindex='0'>
                                     <xsl:for-each select='$customer/orders/order'>
                                         <xsl:sort select='time-ordered'/>
                                         
@@ -114,7 +114,7 @@
                                 </div>
 
                                 <!--* PENDING -->
-                                <div class='tab-pane fade pb-1' id='pending-pane' role='tabpanel' aria-labelledby='pending-tab' tabindex='0'>
+                                <div class='tab-pane fade' id='pending-pane' role='tabpanel' aria-labelledby='pending-tab' tabindex='0'>
                                     <xsl:for-each select='$customer/orders/order[status = "Pending"]'>
                                         <xsl:sort select='time-ordered'/>
                                         
@@ -181,7 +181,7 @@
                                 </div>
                                           
                                 <!--* IN PROGRESS -->
-                                <div class='tab-pane fade pb-1' id='in-progress-pane' role='tabpanel' aria-labelledby='in-progress-tab' tabindex='0'>
+                                <div class='tab-pane fade' id='in-progress-pane' role='tabpanel' aria-labelledby='in-progress-tab' tabindex='0'>
                                     <xsl:for-each select='$customer/orders/order[status = "In Progress"]'>
                                         <xsl:sort select='time-ordered'/>
                                         
@@ -248,7 +248,7 @@
                                 </div>
 
                                 <!--* OUT FOR DELIVERY -->
-                                <div class='tab-pane fade pb-1' id='out-for-delivery-pane' role='tabpanel' aria-labelledby='out-for-delivery-tab' tabindex='0'>
+                                <div class='tab-pane fade' id='out-for-delivery-pane' role='tabpanel' aria-labelledby='out-for-delivery-tab' tabindex='0'>
                                     <xsl:for-each select='$customer/orders/order[status = "Out for Delivery"]'>
                                         <xsl:sort select='time-ordered'/>
                                         
@@ -315,7 +315,7 @@
                                 </div>
 
                                 <!--* COMPLETED -->
-                                <div class='tab-pane fade pb-1' id='completed-pane' role='tabpanel' aria-labelledby='completed-tab' tabindex='0'>
+                                <div class='tab-pane fade' id='completed-pane' role='tabpanel' aria-labelledby='completed-tab' tabindex='0'>
                                     <xsl:for-each select='$customer/orders/order[status = "Completed"]'>
                                         <xsl:sort select='time-ordered'/>
                                         
@@ -382,7 +382,7 @@
                                 </div>
 
                                 <!--* DECLINED -->
-                                <div class='tab-pane fade pb-1' id='declined-pane' role='tabpanel' aria-labelledby='declined-tab' tabindex='0'>
+                                <div class='tab-pane fade' id='declined-pane' role='tabpanel' aria-labelledby='declined-tab' tabindex='0'>
                                     <xsl:for-each select='$customer/orders/order[status = "Declined"]'>
                                         <xsl:sort select='time-ordered'/>
                                         
@@ -449,11 +449,6 @@
                                 </div>
                             
                             </div>
-
-                            <!-- <div class='section orders-details-section ms-3 debug'>
-                                Detailss?
-                            </div> -->
-
 						</div>
 					</main>
 				</div>

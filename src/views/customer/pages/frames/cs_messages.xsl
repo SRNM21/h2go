@@ -78,7 +78,7 @@
 										<span class="placeholder position-absolute rounded-circle top-0 start-0"></span>
 									</span>
 									<div class='d-flex align-items-center'>
-										<h5 id='current-message-name'><xsl:value-of select='$customer/personal-details/name'/></h5>
+										<h5 id='current-message-name'><xsl:value-of select='$water-station/water-station-details/name'/></h5>
 									</div>
 								</div>
 

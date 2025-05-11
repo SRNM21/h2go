@@ -226,6 +226,13 @@ textarea.form-control
     font-weight: bold;
 }
 
+.required::after
+{
+    content: '*';
+    margin-left: 8px;
+    color: var(--danger-dark);
+}
+
 /*! DEBUGGING */
 
 .debug

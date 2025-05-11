@@ -16,7 +16,6 @@ const prices = $('.product-price')
 
 prices.each((_, e) => $(e).text(toPeso($(e).text())))
 
-
 // #region ADD TO ORDER
 
 const noOrderFlag = $('#no-order-flag')

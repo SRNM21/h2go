@@ -184,22 +184,22 @@
                             <div class='modal-body'>
                                 <form id='add-address-form' class='needs-validation' novalidate='true'>
                                     <div class='mb-3 has-validation'>
-                                        <label for='cs-name' class='form-label'>First name</label>
+                                        <label for='cs-name' class='form-label required'>First name</label>
                                         <input id='new-shipping-fname' type='text' aria-label='First name' class='form-control' data-fb='First Name' required='true' pattern='[A-Za-z\s]+'/>
 										<div id='new-shipping-fname-invalid-fb' class="invalid-feedback"></div>
                                     </div>
 									<div class='mb-3 has-validation'>
-                                        <label for='cs-name' class='form-label'>Last name</label>
+                                        <label for='cs-name' class='form-label required'>Last name</label>
 										<input id='new-shipping-lname' type='text' aria-label='Last name' class='form-control' data-fb='Last Name' required='true' pattern='[A-Za-z\s]+'/>
 										<div id='new-shipping-lname-invalid-fb' class="invalid-feedback"></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
-                                        <label for='cs-contact-number' class='form-label'>Contact Number</label>
+                                        <label for='cs-contact-number' class='form-label required'>Contact Number</label>
 										<input id='new-shipping-contact-num' type='tel' aria-label='Contact Number' class='form-control' maxLength='11' data-fb='Contact Number' required='true'/>
 										<div id='new-shipping-contact-num-invalid-fb' class="invalid-feedback"></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
-                                        <label for='cs-gender' class='form-label'>Gender</label>
+                                        <label for='cs-gender' class='form-label required'>Gender</label>
                                         <select id='new-shipping-gender' class='form-select' aria-label='Select Gender' data-fb='Gender' required='true'>
                                             <option value='' selected='true' disabled='true'>Select Gender</option>
                                             <option value='M'>Male</option>
@@ -208,7 +208,7 @@
 										<div id='new-shipping-gender-invalid-fb' class="invalid-feedback"></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
-                                        <label for='ws-address' class='form-label'>Address</label>
+                                        <label for='ws-address' class='form-label required'>Address</label>
                                         <textarea id='new-shipping-address' class='form-control' rows='3' data-fb='Address' required='true'></textarea>
 										<div id='new-shipping-address-invalid-fb' class="invalid-feedback"></div>
                                     </div>

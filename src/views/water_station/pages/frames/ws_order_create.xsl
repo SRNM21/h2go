@@ -230,22 +230,22 @@
                             <div class='modal-body'>
                                 <form id='customer-details-form' class='needs-validation' novalidate='true'>
                                     <div class='mb-3 has-validation'>
-                                        <label for='cs-name' class='form-label'>First name</label>
+                                        <label for='cs-name' class='form-label required'>First name</label>
                                         <input id='customer-details-fname' type='text' aria-label='First name' class='form-control' data-fb='First Name' required='true' pattern='[A-Za-z\s]+'/>
 										<div id='customer-details-fname-invalid-fb' class="invalid-feedback"></div>
                                     </div>
 									<div class='mb-3 has-validation'>
-                                        <label for='cs-name' class='form-label'>Last name</label>
+                                        <label for='cs-name' class='form-label required'>Last name</label>
 										<input id='customer-details-lname' type='text' aria-label='Last name' class='form-control' data-fb='Last Name' required='true' pattern='[A-Za-z\s]+'/>
 										<div id='customer-details-lname-invalid-fb' class="invalid-feedback"></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
-                                        <label for='cs-contact-number' class='form-label'>Contact Number</label>
+                                        <label for='cs-contact-number' class='form-label required'>Contact Number</label>
 										<input id='customer-details-contact-num' type='tel' aria-label='Contact Number' class='form-control' maxLength='11' data-fb='Contact Number' required='true'/>
 										<div id='customer-details-contact-num-invalid-fb' class="invalid-feedback"></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
-                                        <label for='cs-gender' class='form-label'>Gender</label>
+                                        <label for='cs-gender' class='form-label required'>Gender</label>
                                         <select id='customer-details-gender' class='form-select' aria-label='Select Gender' data-fb='Gender' required='true'>
                                             <option value='' selected='true' disabled='true'>Select Gender</option>
                                             <option value='M'>Male</option>
@@ -254,7 +254,7 @@
 										<div id='customer-details-gender-invalid-fb' class="invalid-feedback"></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
-                                        <label for='ws-address' class='form-label'>Address</label>
+                                        <label for='ws-address' class='form-label required'>Address</label>
                                         <textarea id='customer-details-address' class='form-control' rows='3' data-fb='Address' required='true'></textarea>
 										<div id='customer-details-address-invalid-fb' class="invalid-feedback"></div>
                                     </div>

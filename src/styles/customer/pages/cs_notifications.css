@@ -1,0 +1,87 @@
+@import url('../pages/cs_frame_setup.css');
+
+.notifications-wrapper
+{
+    height: fit-content;
+    max-width: var(--bs-breakpoint-lg);
+}
+
+.icon-wrapper
+{
+    height: 48px;
+    width: 48px;
+    background-color: var(--info-light-2);
+}
+
+.icon-wrapper svg 
+{
+    height: 100%;
+    width: 100%;
+}
+
+.notif-date-time
+{
+    font-size: var(--body-x-small);
+}
+
+.hide
+{
+    opacity: 0;
+    display: none !important;
+}
+
+.more-option-toggle::after
+{
+    display: none;
+}
+
+.more-option-toggle.show
+{
+    background-color: white;
+}
+
+.notification
+{
+    user-select: none;
+    cursor: pointer;
+}
+
+.notification:hover
+{
+    background-color: var(--secondary-color);
+}
+
+.notification[data-read='False']
+{
+    .notif-title
+    {
+        font-weight: 600;
+    }
+
+    .notif-description, .notif-date-time
+    {
+        font-weight: 500;
+    }
+}
+
+.notification[data-read='False']::after
+{
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    height: 10px;
+    aspect-ratio: 1/1;
+    background-color: var(--info-light);
+    border-radius: 100%;
+}
+
+.dropdown-item:active
+{
+    background-color: var(--secondary-color);
+}
+
+.more-options
+{
+    z-index: 100;
+}
