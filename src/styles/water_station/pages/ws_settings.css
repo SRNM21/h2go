@@ -6,9 +6,14 @@
     max-width: var(--bs-breakpoint-lg);
 }
 
-.btn-danger
+.nav-link.active
 {
-    color: white !important;
+    font-weight: 600;
+}
+
+.cancel-edit-details-btn, .cancel-edit-email-btn
+{
+    display: none;
 }
 
 .verification-illustration-holder
@@ -47,7 +52,62 @@
     width: 150px;
 }
 
-.nav-link.active
+.danger-card
 {
-    font-weight: 600;
+    background-color: var(--danger-light-5);
+    border: solid 1px var(--danger) !important;
+}
+
+.text-danger, .delete-text, .text-danger *, .delete-text *
+{
+    color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+}
+
+.deletion-title
+{
+    font-size: var(--body-medium);
+}
+
+.deletion-notice
+{
+    font-size: var(--body-small);
+}
+
+.list
+{
+    margin-left: 8px;
+}
+
+.list::before
+{
+    content: '•';
+    margin-right: 8px;
+}
+
+.form-check-input
+{
+    height: 18px !important;
+    width: 36px !important;
+    cursor: pointer;
+}
+
+.form-check-input:checked
+{
+    background-color: var(--accent-color);
+}
+
+.auth-icon-holder svg
+{
+    height: 32px;
+    width: 32px;    
+}
+
+.auth-desc p 
+{
+    font-size: var(--body-small);
+}
+
+.tfa-card
+{
+    display: none;
 }

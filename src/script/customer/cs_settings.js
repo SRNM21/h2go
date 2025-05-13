@@ -59,13 +59,14 @@ const deleteAccountSuccessModal = $('#deletion-success-modal')
 
 //* SECURITY
 
+const changePasswordForm = $('#change-password-form')
+
 var changePasswordInputs = {}
 var changePasswordFeedbacks = {}
 
 const changePasswordModal = $('#change-pass-modal')
 const changePasswordBtn = $('#change-password-btn')
 
-const changePasswordForm = $('#change-password-form')
 const showPasswordBtn = $('#show-pass-btn')
 const saveChangedPasswordBtn = $('#save-change-pass-btn')
 var show = false
