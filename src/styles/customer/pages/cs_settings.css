@@ -10,3 +10,98 @@
 {
     font-weight: 600;
 }
+
+.cancel-edit-details-btn, .cancel-edit-email-btn
+{
+    display: none;
+}
+
+.verification-illustration-holder, .otp-illustration-holder
+{
+    height: 200px;
+    width: 200px;
+}
+
+.verification-illustration-holder > svg, .otp-illustration-holder > svg
+{
+    height: 100%;
+    width: 100%;
+}
+
+.pin-input
+{
+    height: 50px;
+    width: fit-content;
+}
+
+.v-pin
+{
+    width: 40px;
+    text-align: center;
+    font-size: var(--body-large);
+}
+
+.btn-link:hover
+{
+    text-decoration: none;
+}
+
+.danger-card
+{
+    background-color: var(--danger-light-5);
+    border: solid 1px var(--danger) !important;
+}
+
+.text-danger, .delete-text, .text-danger *, .delete-text *
+{
+    color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+}
+
+.deletion-title
+{
+    font-size: var(--body-medium);
+}
+
+.deletion-notice
+{
+    font-size: var(--body-small);
+}
+
+.list
+{
+    margin-left: 8px;
+}
+
+.list::before
+{
+    content: '•';
+    margin-right: 8px;
+}
+
+.form-check-input
+{
+    height: 18px !important;
+    width: 36px !important;
+    cursor: pointer;
+}
+
+.form-check-input:checked
+{
+    background-color: var(--accent-color);
+}
+
+.auth-icon-holder svg
+{
+    height: 32px;
+    width: 32px;    
+}
+
+.auth-desc p 
+{
+    font-size: var(--body-small);
+}
+
+.tfa-card
+{
+    display: none;
+}

@@ -10,6 +10,7 @@
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/cs_sidebar.xsl'/>
 	<xsl:include href='../../../../components/cs_logout_modal.xsl'/>
+	<xsl:include href='../../../../components/verification_modal.xsl'/>
 	<xsl:include href='../../../../components/toast_container.xsl'/>
 
     <xsl:template match='/'>

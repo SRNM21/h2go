@@ -41,15 +41,15 @@ export function validateName(nameInput, nameFeedback)
 
     if (!alphaRegex.test(val))
     {
-        return invalidate(nameInput, nameFeedback, `${name} must not contain invalid characters`)
+        return invalidate(nameInput, nameFeedback, `${name} must not contain invalid characters.`)
     }
     else if (val.length < 2)
     {
-        return invalidate(nameInput, nameFeedback, `${name} is too short`)
+        return invalidate(nameInput, nameFeedback, `${name} is too short.`)
     }
     else if (val.length > 100)
     {
-        return invalidate(nameInput, nameFeedback, `${name} is too long`)
+        return invalidate(nameInput, nameFeedback, `${name} is too long.`)
     }
 
     return validate(nameInput, nameFeedback)
@@ -95,11 +95,7 @@ export function validatePhoneNumber(phoneNumberInput, phoneNumberFeedback)
     let numStartRegex = /^09/
     let numRegex = /^09\d{9}$/
 
-    if (val == '') 
-    {
-        return invalidate(phoneNumberInput, phoneNumberFeedback, `${name} is required.`)
-    }
-    else if (!numStartRegex.test(val))
+    if (!numStartRegex.test(val))
     {
         return invalidate(phoneNumberInput, phoneNumberFeedback, `${name} must start with \'09\'.`)
     }
@@ -113,6 +109,47 @@ export function validatePhoneNumber(phoneNumberInput, phoneNumberFeedback)
     }
 
     return validate(phoneNumberInput, phoneNumberFeedback)
+}
+
+export function validatePassword(passwordInput, passwordFeedback, confirmPasswordInput, confirmPasswordFeedback) 
+{
+    if (!validateRequired(passwordInput, passwordFeedback)) return false 
+
+    const val = passwordInput.val().trim()
+    const name = passwordInput.data('fb')
+
+    let symRegex = /[^\w\s]/
+
+    if (val.length < 8) 
+    {
+        return invalidate(passwordInput, passwordFeedback, `${name} must be at least 8 characters.`)
+    }
+    
+    let lower = false
+    let upper = false
+    let num = false
+    let sym = false
+
+    for (let c of val) 
+    {
+        if (c >= 'a' && c <= 'z') lower = true
+        else if (c >= 'A' && c <= 'Z') upper = true
+        else if (c >= '0' && c <= '9') num = true
+        else if (symRegex.test(val)) sym = true
+    }
+
+    if (!(lower && upper && num && sym))
+    {
+        return invalidate(passwordInput, passwordFeedback, `${name} must have lowercase, uppercase, numbers, and symbols.`)
+    }
+
+    if (val !== confirmPasswordInput.val().trim())
+    {
+        return invalidate(confirmPasswordInput, confirmPasswordFeedback, 'Password does not match')
+    }
+
+    validate(passwordInput, passwordFeedback)
+    return validate(confirmPasswordInput, confirmPasswordFeedback)
 }
 
 //? HELPER 
