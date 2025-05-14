@@ -12,8 +12,12 @@
 	<xsl:include href='../../../../components/cs_logout_modal.xsl'/>
 
     <xsl:template match='/'>
-		<html>
+		<html lang='en'>
 			<head>
+				<meta charset='UTF-8'/>
+				<meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+				<title>Water Stations | Customer</title>
+				<link rel='shortcut icon' href='../../../../public/favicon.ico' type='image/x-icon'/>
                 <link rel='stylesheet' href='../../../styles/customer/pages/cs_water_stations.css'/>
 			</head>
 			<body class='d-flex w-100 h-100'>

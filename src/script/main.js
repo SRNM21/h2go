@@ -3,12 +3,14 @@ import '../../vendor/bootstrap.bundle.min.js';
 import '../../vendor/datatables.js'
 import {initializeFormValidation} from '../util/validation.js'
 
-if (window.jQuery) {
+if (window.jQuery) 
+{
+    // ! FOR DEBUGGING / CHECKING OF CENTRALIZATION OF JS MODULES
+    // console.log('JQ LOADED');
 
-    console.log('JQ LOADED');
     initializeFormValidation()
-    
-} else {
-
-    console.log("jQuery is NOT loaded");
+} 
+else 
+{
+    console.error("jQuery is NOT loaded")
 }
