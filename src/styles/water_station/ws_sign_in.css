@@ -27,3 +27,19 @@
 {
     max-width: 400px;
 }
+
+.terms-modal
+{
+    font-size: var(--body-small);
+}
+
+.terms-footer
+{
+    color: var(--gray-light) !important;
+    font-size: var(--body-small);
+}
+
+.show-password-btn:hover
+{
+    text-decoration: none !important;
+}

@@ -1,5 +1,17 @@
 import '../main.js'
 
+import { 
+    notify 
+} from '../../util/helper.js'
+
+const params = new URLSearchParams(window.location.search)
+const signedIn = params.get('signed-in')  
+
+$(window).on('load', function() 
+{
+    if (signedIn == 'true') notify('success', 'Signed in successfully.')
+})
+
 // #region GENERATE WATER STATIONS STAR REVIEW
 
 const fullStar = $('<svg class="stars" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M5.825 21L7.45 13.975L2 9.25L9.2 8.625L12 2L14.8 8.625L22 9.25L16.55 13.975L18.175 21L12 17.275L5.825 21Z" fill="#005691"/></svg>')
@@ -110,6 +122,8 @@ function search()
 
 // #endregion SEARCH WATER STATION
 
+// #region COLLAPSE SIDEBAR MAP
+
 const waterStationSection = $('.water-stations-section')
 const collapseBtn = $('#collapse-btn')
 const arrowRight = $('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#005691"><path d="M400-280v-400l200 200-200 200Z"/></svg>')
@@ -133,3 +147,6 @@ collapseBtn.on('click', function()
 
     waterStationSection.toggleClass('ws-collapse')
 })
+
+// #endregion COLLAPSE SIDEBAR MAP
+

@@ -14,31 +14,41 @@
         <div class='ws-sign-in-form-wrapper d-flex justify-content-center align-items-center flex-column p-5'>
             <div class='d-flex flex-column align-items-center mb-5'>
                 <h3 class='fw-semibold'>Customer Sign Up</h3>
-                <h5 class='fw-semibold'>Personal Details</h5>
+                <h5>Personal Details</h5>
             </div>
             <div class='form-content w-100'>
-                <form action=''>
-                    <div class='mb-3'>
-                        <label for='cs-name' class='form-label'>First name and Last name</label>
-                        <div class='input-group'>
-                            <input type='text' aria-label='First name' class='form-control'>
-                            <input type='text' aria-label='Last name' class='form-control'>
-                        </div>
+                <form id='sign-up-1-form' class='needs-validation' novalidate>
+                    <div class='mb-3 has-validation'>
+                        <label for='cs-fname' class='form-label required'>First name</label>
+                        <input id='cs-fname' type='text' aria-label='First name' class='form-control' data-fb='First Name' required='true' pattern='[A-Za-z\s]+'/>    
+                        <div id='cs-fname-invalid-fb' class='invalid-feedback'></div>
                     </div>
-                    <div class='mb-3'>
-                        <label for='cs-gender' class='form-label'>Gender</label>
-                        <select id='cs-gender' class='form-select' aria-label='Select Gender'>
-                            <option selected disabled>Select Gender</option>
-                            <option value='Male'>Male</option>
-                            <option value='Female'>Female</option>
+                    <div class='mb-3 has-validation'>
+                        <label for='cs-lname' class='form-label required'>Last name</label>
+                        <input id='cs-lname' type='text' aria-label='Last name' class='form-control' data-fb='Last Name' required='true' pattern='[A-Za-z\s]+'/>
+                        <div id='cs-lname-invalid-fb' class='invalid-feedback'></div>
+                    </div>
+                    <div class='mb-3 has-validation'>
+                        <label for='cs-contact-num' class='form-label required'>Contact Number</label>
+                        <input id='cs-contact-num' type='tel' aria-label='Contact Number' class='form-control' maxLength='11' data-fb='Contact Number' required='true'/>
+                        <div id='cs-contact-num-invalid-fb' class='invalid-feedback'></div>
+                    </div>
+                    <div class='mb-3 has-validation'>
+                        <label for='cs-gender' class='form-label required'>Gender</label>
+                        <select id='cs-gender' class='form-select' aria-label='Select Gender' data-fb='Gender' required='true'>
+                            <option value='' selected='true'>Select Gender</option>
+                            <option value='M'>Male</option>
+                            <option value='F'>Female</option>
                         </select>
+                        <div id='cs-gender-invalid-fb' class='invalid-feedback'></div>
                     </div>
-                    <div class='mb-3'>
-                        <label for='ws-address' class='form-label'>Address</label>
-                        <textarea class='form-control' id='ws-address' rows='3'></textarea>
+                    <div class='mb-3 has-validation'>
+                        <label for='ws-address' class='form-label required'>Address</label>
+                        <textarea id='cs-address' class='form-control' rows='3' data-fb='Address' required='true'></textarea>
+                        <div id='cs-address-invalid-fb' class='invalid-feedback'></div>
                     </div>
                     <div>
-                        <a href='cs_sign_up_p2.html' class='btn btn-primary w-100'>Next</a>
+                        <button id='signup-1-next-btn' type='submit' class='btn btn-primary w-100'>Next</a>
                     </div>
                     <div class='d-flex justify-content-center w-100'>
                         <p class='suggestion-text d-flex align-items-center'>Already have an account? <a href='cs_sign_in.html' class='btn btn-link btn-text'>Sign in</a></p>
@@ -47,6 +57,6 @@
             </div>
         </div>
     </main>
-    <script type='module' src='../../../script/main.js'></script>
+    <script type='module' src='../../../script/customer/cs_signup_1.js'></script>
 </body>
 </html>

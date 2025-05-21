@@ -9,6 +9,7 @@
 
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/cs_sidebar.xsl'/>
+	<xsl:include href='../../../../components/toast_container.xsl'/>
 	<xsl:include href='../../../../components/cs_logout_modal.xsl'/>
 
     <xsl:template match='/'>
@@ -86,6 +87,7 @@
 					</main>
 				</div>
 				
+				<xsl:call-template name='toast-container'/>
 				<xsl:call-template name='log-out-modal'/>
 				
 				<script type='module' src='../../../script/customer/cs_water_stations.js'></script>

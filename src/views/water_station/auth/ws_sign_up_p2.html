@@ -14,27 +14,38 @@
         <div class='ws-sign-in-form-wrapper d-flex justify-content-center align-items-center flex-column p-5'>
             <div class='d-flex flex-column align-items-center mb-5'>
                 <h3 class='fw-semibold'>Water Station Sign Up</h3>
-                <h5 class='fw-semibold'>Account Details</h5>
+                <h5>Account Details</h5>
             </div>
             <div class='form-content w-100'>
-                <form action=''>
-                    <div class='mb-3'>
-                        <label for='ws-email' class='form-label'>Email</label>
-                        <input type='email' id='ws-email' class='form-control'>
+                <form id='sign-up-2-form' class='needs-validation' novalidate>
+                    <div class='mb-3 has-validation'>
+                        <label for='ws-email' class='form-label required'>Email</label>
+                        <input type='email' id='ws-email' class='form-control' data-fb='Email' required/>
+                        <div id='ws-email-invalid-fb' class='invalid-feedback'></div>
                     </div>
-                    <div class='mb-3'>
-                        <label for='ws-password' class='form-label'>Password</label>
-                        <input type='password' id='ws-password' class='form-control'>
+                    <div class='mb-3 has-validation'>
+                        <label for='ws-password' class='form-label required'>Password</label>
+                        <input id='ws-password' type='password' aria-label='Password' class='form-control' data-fb='Password' required/>    
+                        <div id='ws-password-invalid-fb' class='invalid-feedback'></div>
                     </div>
-                    <div class='mb-3'>
-                        <label for='ws-confirm-password' class='form-label'>Confirm Password</label>
-                        <input type='password' id='ws-confirm-password' class='form-control'>
+                    <div class='mb-3 has-validation'>
+                        <label for='ws-confirm-password' class='form-label required'>Confirm Password</label>
+                        <input id='ws-confirm-password' type='password' aria-label='Confirm Password' class='form-control' data-fb='Confirm Password' required/>    
+                        <div id='ws-confirm-password-invalid-fb' class='invalid-feedback'></div>
                     </div>
                     <div class='mb-3 d-flex justify-content-end'>
                         <button type='button' class='btn btn-link btn-text'>SHOW</button>
                     </div>
-                    <div>
-                        <a href='ws_verification.html' class='btn btn-primary w-100'>Sign up</a>
+                    <div class='mb-3'>
+                        <button id='ws-signup-btn' type='submit' class='btn btn-primary w-100' disabled>Sign up</a>
+                    </div>
+                    <div class='form-check mb-3'>
+                        <input class='form-check-input' type='checkbox' id='terms-check' required>
+                        <label class='form-check-label terms-modal' for='terms-check'>
+                            I agree to the 
+                            <a href='#terms-modal' data-bs-toggle='modal' data-bs-target='#terms-modal'>Terms and Conditions &amp; Privacy Policy</a> 
+                        </label>
+                        <div id='ws-terms-check-invalid-fb' class='invalid-feedback'></div>
                     </div>
                     <div class='d-flex justify-content-center w-100'>
                         <p class='suggestion-text d-flex align-items-center'>Already have an account? <a href='ws_sign_in.html' class='btn btn-link btn-text'>Sign in</a></p>
@@ -43,6 +54,138 @@
             </div>
         </div>
     </main>
-    <script type='module' src='../../../script/main.js'></script>
+
+    <div id='terms-modal' class='modal fade' tabindex='-1' aria-labelledby='terms-modal-label' aria-hidden='true' data-bs-backdrop='static' data-bs-keyboard='false'>
+        <div class='modal-dialog modal-dialog-centered modal-dialog-scrollable'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h6 id='terms-modal-label' class='modal-title'>Terms and Conditions &amp; Privacy Policy for H2GO</h6>
+                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                </div>
+                <div id='terms-modal-content' class='modal-body'>
+                    
+                    <div class='row'>
+                        <div class='col-12'>
+                            <div class='card mb-4 shadow-sm'>
+                                <div class='card-body'>
+                                    <h5 class='mb-3'>Terms and Conditions</h5>
+
+                                    <h6 class='mb-2'>1. Account Registration</h6>
+                                    <p class='mb-3'>
+                                        By creating an account with our H2GO, you agree to provide accurate, current, and complete information during the registration process. This information includes but is not limited to your water station name, business address, contact number, email address, and a current image of your water station.
+                                    </p>
+
+                                    <h6 class='mb-2'>2. Use of Business Information</h6>
+                                    <p class='mb-3'>The business information you provide will be primarily used to:</p>
+                                    <ul class='list-group list-group-flush mb-3'>
+                                        <li class='list-group-item'>Process and fulfill customer orders directed to your water station</li>
+                                        <li class='list-group-item'>Coordinate shipping and delivery from your location</li>
+                                        <li class='list-group-item'>Contact you regarding customer orders and delivery requirements</li>
+                                        <li class='list-group-item'>Display your water station information to potential customers</li>
+                                        <li class='list-group-item'>Maintain your business account and order history</li>
+                                    </ul>
+
+                                    <h6 class='mb-2'>3. Water Station Owner Responsibilities</h6>
+                                    <p class='mb-2'>You are responsible for:</p>
+                                    <ul class='list-group list-group-flush mb-3'>
+                                        <li class='list-group-item'>Maintaining the confidentiality of your account information</li>
+                                        <li class='list-group-item'>Providing accurate business details and keeping them updated</li>
+                                        <li class='list-group-item'>Ensuring your water station image is current and representative</li>
+                                        <li class='list-group-item'>Fulfilling customer orders in a timely manner</li>
+                                        <li class='list-group-item'>Ensuring water quality meets all applicable safety standards</li>
+                                    </ul>
+
+                                    <h6 class='mb-2'>4. Service Limitations</h6>
+                                    <p class='mb-2'>Our platform service is subject to:</p>
+                                    <ul class='list-group list-group-flush mb-3'>
+                                        <li class='list-group-item'>Geographic service area restrictions</li>
+                                        <li class='list-group-item'>Platform availability and maintenance schedules</li>
+                                        <li class='list-group-item'>Order volume capacity</li>
+                                        <li class='list-group-item'>Technical limitations and network connectivity</li>
+                                    </ul>
+
+                                    <h6 class='mb-2'>5. Modifications</h6>
+                                    <p class='mb-3'>
+                                        We reserve the right to modify these terms at any time. Continued use of our service following any changes constitutes acceptance of the modified terms.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class='card mb-4 shadow-sm'>
+                                <div class='card-body'>
+                                    <h5 class='mb-3'>Privacy Policy</h5>
+
+                                    <h6 class='mb-2'>1. Information Collection</h6>
+                                    <p class='mb-3'>We collect the following business information:</p>
+                                    <ul class='list-group list-group-flush mb-3'>
+                                        <li class='list-group-item'>Water station name</li>
+                                        <li class='list-group-item'>Business address</li>
+                                        <li class='list-group-item'>Contact number</li>
+                                        <li class='list-group-item'>Email address</li>
+                                        <li class='list-group-item'>Water station image</li>
+                                    </ul>
+
+                                    <h6 class='mb-2'>2. Purpose of Collection</h6>
+                                    <p class='mb-3'>Your business information is collected strictly for:</p>
+                                    <ul class='list-group list-group-flush mb-3'>
+                                        <li class='list-group-item'>Business listing on our platform</li>
+                                        <li class='list-group-item'>Order processing and fulfillment coordination</li>
+                                        <li class='list-group-item'>Customer delivery management</li>
+                                        <li class='list-group-item'>Communication regarding orders and services</li>
+                                        <li class='list-group-item'>Verification of business legitimacy</li>
+                                    </ul>
+
+                                    <h6 class='mb-2'>3. Information Storage and Security</h6>
+                                    <p class='mb-3'>
+                                        We implement reasonable security measures to protect your business information from unauthorized access, alteration, or disclosure. Your data is stored on secure servers with restricted access. Images are stored using secure cloud storage services.
+                                    </p>
+
+                                    <h6 class='mb-2'>4. Information Sharing</h6>
+                                    <p class='mb-3'>We do not sell your business information to third parties. We may share your information with:</p>
+                                    <ul class='list-group list-group-flush mb-3'>
+                                        <li class='list-group-item'>Customers placing orders (water station name, address, contact information, and image)</li>
+                                        <li class='list-group-item'>Payment processors (for transaction purposes only)</li>
+                                        <li class='list-group-item'>Service providers who assist in our platform operations</li>
+                                        <li class='list-group-item'>Legal authorities when required by law</li>
+                                    </ul>
+
+                                    <h6 class='mb-2'>5. Data Retention</h6>
+                                    <p class='mb-3'>
+                                        We retain your business information for as long as your account remains active or as needed to provide services. You may request deletion of your account and business information at any time.
+                                    </p>
+
+                                    <h6 class='mb-2'>6. Your Rights</h6>
+                                    <p class='mb-3'>You have the right to:</p>
+                                    <ul class='list-group list-group-flush mb-3'>
+                                        <li class='list-group-item'>Access your business information</li>
+                                        <li class='list-group-item'>Correct inaccurate information</li>
+                                        <li class='list-group-item'>Request deletion of your data</li>
+                                        <li class='list-group-item'>Opt out of marketing communications</li>
+                                    </ul>
+
+                                    <h6 class='mb-2'>7. Contact Us</h6>
+                                    <p class='mb-3'>
+                                        For questions or concerns about this privacy policy or your business information, please contact our customer service department through the provided channels on our website or application.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class='footer text-center'>
+                                <p class='mb-0 terms-footer'>
+                                    By creating an account and using our H2GO, you acknowledge that you have read, understood, and agree to these Terms and Conditions and Privacy Policy.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-outline-primary' data-bs-dismiss='modal'>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type='module' src='../../../script/water_station/ws_signup_2.js'></script>
 </body>
 </html>

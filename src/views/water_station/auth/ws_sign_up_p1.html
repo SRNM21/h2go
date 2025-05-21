@@ -14,28 +14,32 @@
         <div class='ws-sign-in-form-wrapper d-flex justify-content-center align-items-center flex-column p-5'>
             <div class='d-flex flex-column align-items-center mb-5'>
                 <h3 class='fw-semibold'>Water Station Sign Up</h3>
-                <h5 class='fw-semibold'>Water Station Details</h5>
+                <h5>Water Station Details</h5>
             </div>
             <div class='form-content w-100'>
-                <form action=''>
-                    <div class='mb-3'>
-                        <label for='ws-name' class='form-label'>Water Station Name</label>
-                        <input type='text' id='ws-name' class='form-control'>
+                <form id='sign-up-1-form' class='needs-validation' novalidate>
+                    <div class='mb-3 has-validation'>
+                        <label for='ws-wsname' class='form-label required'>Water Station Name</label>
+                        <input id='ws-wsname' type='text' aria-label='Water Station Name' class='form-control' data-fb='Water Station Name' required='true' pattern='[A-Za-z\s]+'/>    
+                        <div id='ws-wsname-invalid-fb' class='invalid-feedback'></div>
                     </div>
-                    <div class='mb-3'>
-                        <label for='ws-contact-num' class='form-label'>Contact Number</label>
-                        <input type='text' id='ws-contact-num' class='form-control'>
+                    <div class='mb-3 has-validation'>
+                        <label for='ws-contact-num' class='form-label required'>Contact Number</label>
+                        <input id='ws-contact-num' type='tel' aria-label='Contact Number' class='form-control' maxLength='11' data-fb='Contact Number' required='true'/>
+                        <div id='ws-contact-num-invalid-fb' class='invalid-feedback'></div>
                     </div>
-                    <div class='mb-3'>
-                        <label for='ws-address' class='form-label'>Address</label>
-                        <textarea class='form-control' id='ws-address' rows='3'></textarea>
+                    <div class='mb-3 has-validation'>
+                        <label for='ws-address' class='form-label required'>Address</label>
+                        <textarea id='ws-address' class='form-control' rows='3' data-fb='Address' required='true'></textarea>
+                        <div id='ws-address-invalid-fb' class='invalid-feedback'></div>
                     </div>
-                    <div class='mb-3'>
+                    <div class='mb-3 has-validation'>
                         <label for='ws-image' class='form-label'>Water Station Image</label>
-                        <input class='form-control' type='file' id='ws-image'>
+                        <input id='ws-image' class='form-control' type='file' aria-label='Water Station Image'>  
+                        <div id='ws-image-invalid-fb' class='invalid-feedback'></div>
                     </div>
                     <div>
-                        <a href='ws_sign_up_p2.html' class='btn btn-primary w-100'>Next</a>
+                        <button id='signup-1-next-btn' type='submit' class='btn btn-primary w-100'>Next</button>
                     </div>
                     <div class='d-flex justify-content-center w-100'>
                         <p class='suggestion-text d-flex align-items-center'>Already have an account? <a href='ws_sign_in.html' class='btn btn-link btn-text'>Sign in</a></p>
@@ -44,6 +48,6 @@
             </div>
         </div>
     </main>
-    <script type='module' src='../../../script/main.js'></script>
+    <script type='module' src='../../../script/water_station/ws_signup_1.js'></script>
 </body>
 </html>

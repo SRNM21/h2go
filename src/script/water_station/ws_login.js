@@ -100,24 +100,8 @@ function queryAccount(xml) {
     })
 }
 
-function login(account)
+function login()
 {
-    // $.ajax({
-    //     url: '../../../../data/system/water_station/ws_data.xml',
-    //     dataType: 'xml',
-    //     success: function(xml) {
-    //         const auth = $(xml).find('ws-auth')
-    //         auth.html(account.xml)
-
-    //         console.log(auth);
-
-    //         window.location = '../pages/ws_p_dashboard.xml'
-    //     },
-    //     error: function(err) {
-    //         console.error('Error loading XML:', err)
-    //     }
-    // })
-
     window.location = '../pages/ws_p_dashboard.xml'
 }
 

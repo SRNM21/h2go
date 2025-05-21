@@ -275,7 +275,6 @@ confirmDiscardBtn.on('click', () => {
 
 // #region WATER STATION DETAILS
 
-const cancelEditDetailsBtn = $('#cancel-edit-details-btn')
 const editDetailsBtn = $('#edit-details-btn')
 
 editDetailsBtn.on('click', () => editBtnFunction())
