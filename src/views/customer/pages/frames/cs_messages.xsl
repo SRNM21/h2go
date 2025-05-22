@@ -54,13 +54,13 @@
 											data-message-id='{@id}'
 											data-water-station-name='{$water-station/water-station-details/name}'
 										>
-											<span class='me-3 position-relative placeholder-glow' aria-hidden="true">
+											<span class='me-3 position-relative placeholder-glow' aria-hidden='true'>
 												<img src='' alt='Contact Profile' class='placeholder-glow contact-profile' data-water-station-name='{$water-station/water-station-details/name}'/>
-												<span class="placeholder position-absolute rounded-circle top-0 start-0"></span>
+												<span class='placeholder position-absolute rounded-circle top-0 start-0'></span>
 											</span>
 											<div class='d-flex flex-column'>
 												<p class='contact-name'><xsl:value-of select='$water-station/water-station-details/name'/></p>
-												<span class="d-inline-block text-truncate">
+												<span class='d-inline-block text-truncate'>
 													<xsl:value-of select='./chats/chat[last()]/content'/>
 												</span>
 											</div>
@@ -77,9 +77,9 @@
                                 <xsl:variable name='water-station' select='$customer-data/h2go/water-stations/water-station[@id=$water-station-id]'/>
 
 								<div class='contact-in-message mb-3 p-3 d-flex w-100 border-bottom'>
-									<span class='me-3 position-relative placeholder-glow' aria-hidden="true">
+									<span class='me-3 position-relative placeholder-glow' aria-hidden='true'>
 										<img id='current-message-img' src='' alt='Contact Profile' class='placeholder-glow contact-profile' data-water-station-name='{$water-station/water-station-details/name}'/>
-										<span class="placeholder position-absolute rounded-circle top-0 start-0"></span>
+										<span class='placeholder position-absolute rounded-circle top-0 start-0'></span>
 									</span>
 									<div class='d-flex align-items-center'>
 										<h5 id='current-message-name'><xsl:value-of select='$water-station/water-station-details/name'/></h5>
@@ -92,7 +92,7 @@
 										<div class='mb-2 d-flex messgage-row' data-sender='{@sender}'>
 											<span class='message-bubble rounded-3 p-3'>
 												<xsl:value-of select='content'/>
-												<span class="message-tooltip p-2 rounded text-center"><xsl:value-of select='date-and-time'/></span>
+												<span class='message-tooltip p-2 rounded text-center'><xsl:value-of select='date-and-time'/></span>
 											</span>
 										</div>
 
@@ -104,7 +104,7 @@
 									<div class='input-group'>
 										<input type='text' id='message-inp' class='form-control' aria-describedby='message-send-btn' placeholder='Aa'/>
 										<button class='btn btn-outline-secondary' type='button' id='message-send-btn'>
-											<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#005691"><path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z"/></svg>
+											<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#005691'><path d='M120-160v-240l320-80-320-80v-240l760 320-760 320Z'/></svg>
 										</button>
 									</div>
 								</div>

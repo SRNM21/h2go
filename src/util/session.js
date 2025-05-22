@@ -22,10 +22,12 @@ export class Session
     static getAll() 
     {
         const all = {}
-        for (let i = 0; i < localStorage.length; i++) {
+        for (let i = 0; i < localStorage.length; i++) 
+        {
             const key = localStorage.key(i)
             all[key] = this.get(key)
         }
+        
         return all
     }
   

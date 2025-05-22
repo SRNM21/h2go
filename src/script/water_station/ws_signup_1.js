@@ -4,13 +4,11 @@ import {
     validateRequired,
     validateName,
     validatePhoneNumber,
-    validateGender
 } from '../../util/validation.js'
 
 const wsnameInput = $('#ws-wsname')
 const contactNumInput = $('#ws-contact-num')
 const addressInput = $('#ws-address')
-const imageInput = $('#ws-image')
 const signupForm1 = $('#sign-up-1-form')
 
 const wsnameFB = $('#ws-wsname-invalid-fb')

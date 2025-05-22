@@ -24,6 +24,14 @@ const passwordFeedback = $('#password-invalid-fb')
 const showPassword = $('#show-password')
 var show = false
 
+const params = new URLSearchParams(window.location.search)
+const created = params.get('created')  
+
+$(window).on('load', function() 
+{
+    if (created == 'true') notify('success', 'Account successfully created.')
+})
+
 signInForm.on('submit', function(e) 
 {
     // ? Validate each input first and add feedback before final checking of form validation
@@ -66,7 +74,8 @@ function preLoadAccounts()
     })
 }
 
-function queryAccount(xml) { 
+function queryAccount() 
+{ 
     const email = emailInput.val()
     const password = passwordInput.val()
 

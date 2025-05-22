@@ -1,6 +1,6 @@
 import '../main.js'
 
-new Chart('earnings-chart',  {
+new Chart('earnings-chart', {
     type: 'line',
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],

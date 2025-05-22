@@ -57,7 +57,7 @@ signupForm2.on('submit', function(e)
 
     if (areAllInputsValid)
     {
-        window.location.href = '../../water_station/pages/ws_p_dashboard.xml?signed-in=true'
+        window.location.href = '../../water_station/auth/ws_verification.html'
     }
     
     e.preventDefault()

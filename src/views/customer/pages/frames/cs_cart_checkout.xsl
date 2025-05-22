@@ -43,7 +43,7 @@
 									<div class='d-flex'>
 										<div class='d-flex justify-content-center align-items-center me-auto'>
 											<span>
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12C12.55 12 13.0208 11.8042 13.4125 11.4125C13.8042 11.0208 14 10.55 14 10C14 9.45 13.8042 8.97917 13.4125 8.5875C13.0208 8.19583 12.55 8 12 8C11.45 8 10.9792 8.19583 10.5875 8.5875C10.1958 8.97917 10 9.45 10 10C10 10.55 10.1958 11.0208 10.5875 11.4125C10.9792 11.8042 11.45 12 12 12ZM12 22C9.31667 19.7167 7.3125 17.5958 5.9875 15.6375C4.6625 13.6792 4 11.8667 4 10.2C4 7.7 4.80417 5.70833 6.4125 4.225C8.02083 2.74167 9.88333 2 12 2C14.1167 2 15.9792 2.74167 17.5875 4.225C19.1958 5.70833 20 7.7 20 10.2C20 11.8667 19.3375 13.6792 18.0125 15.6375C16.6875 17.5958 14.6833 19.7167 12 22Z" fill="#005691"/></svg>
+												<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 12C12.55 12 13.0208 11.8042 13.4125 11.4125C13.8042 11.0208 14 10.55 14 10C14 9.45 13.8042 8.97917 13.4125 8.5875C13.0208 8.19583 12.55 8 12 8C11.45 8 10.9792 8.19583 10.5875 8.5875C10.1958 8.97917 10 9.45 10 10C10 10.55 10.1958 11.0208 10.5875 11.4125C10.9792 11.8042 11.45 12 12 12ZM12 22C9.31667 19.7167 7.3125 17.5958 5.9875 15.6375C4.6625 13.6792 4 11.8667 4 10.2C4 7.7 4.80417 5.70833 6.4125 4.225C8.02083 2.74167 9.88333 2 12 2C14.1167 2 15.9792 2.74167 17.5875 4.225C19.1958 5.70833 20 7.7 20 10.2C20 11.8667 19.3375 13.6792 18.0125 15.6375C16.6875 17.5958 14.6833 19.7167 12 22Z' fill='#005691'/></svg>
 											</span>
 											<h5 class='fw-semibold ms-3'>Shipping Address</h5>
 										</div>
@@ -93,23 +93,23 @@
 											<p>Mode of Payment:</p>
 											<div id='order-summary-mod' class='ms-auto d-flex justify-content-center align-items-center'>
 												<img id='mod-indicator' class='mod-img' src='../../../assets/images/mode_of_payment/cash.png'/>
-												<div class="dropdown ms-3">
-													<button id='mod-type-parent' class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cash On Delivery</button>
-													<ul class="dropdown-menu">
+												<div class='dropdown ms-3'>
+													<button id='mod-type-parent' class='btn btn-outline-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>Cash On Delivery</button>
+													<ul class='dropdown-menu'>
 														<li>
-															<button class="dropdown-item d-flex mod-type" type="button" data-mod='cash.png'>
+															<button class='dropdown-item d-flex mod-type' type='button' data-mod='cash.png'>
 																<img class='mod-img' src='../../../assets/images/mode_of_payment/cash.png' />
 																<p class='ms-3'>Cash On Delivery</p>
 															</button>
 														</li>
 														<li>
-															<button class="dropdown-item d-flex mod-type" type="button" data-mod='gcash.jpeg'>
+															<button class='dropdown-item d-flex mod-type' type='button' data-mod='gcash.jpeg'>
 																<img class='mod-img' src='../../../assets/images/mode_of_payment/gcash.jpeg' />
 																<p class='ms-3'>Gcash</p>
 															</button>
 														</li>
 														<li>
-															<button class="dropdown-item d-flex mod-type" type="button" data-mod='maya.jpeg'>
+															<button class='dropdown-item d-flex mod-type' type='button' data-mod='maya.jpeg'>
 																<img class='mod-img' src='../../../assets/images/mode_of_payment/maya.jpeg' />
 																<p class='ms-3'>Paymaya</p>
 															</button>
@@ -145,7 +145,7 @@
 							<div id='address-modal-content' class='modal-body'>
 								<div class='rounded border mb-3'>
 									<button id='add-address-btn' type='button' class='btn w-100 d-flex align-items-center' data-bs-toggle='modal' data-bs-target='#add-address-modal'>
-										<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#005691"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+										<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#005691'><path d='M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z'/></svg>
 										<p>Add Address</p>
 									</button>
 								</div>
@@ -190,17 +190,17 @@
                                     <div class='mb-3 has-validation'>
                                         <label for='cs-name' class='form-label required'>First name</label>
                                         <input id='new-shipping-fname' type='text' aria-label='First name' class='form-control' data-fb='First Name' required='true' pattern='[A-Za-z\s]+'/>
-										<div id='new-shipping-fname-invalid-fb' class="invalid-feedback"></div>
+										<div id='new-shipping-fname-invalid-fb' class='invalid-feedback'></div>
                                     </div>
 									<div class='mb-3 has-validation'>
                                         <label for='cs-name' class='form-label required'>Last name</label>
 										<input id='new-shipping-lname' type='text' aria-label='Last name' class='form-control' data-fb='Last Name' required='true' pattern='[A-Za-z\s]+'/>
-										<div id='new-shipping-lname-invalid-fb' class="invalid-feedback"></div>
+										<div id='new-shipping-lname-invalid-fb' class='invalid-feedback'></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
                                         <label for='cs-contact-number' class='form-label required'>Contact Number</label>
 										<input id='new-shipping-contact-num' type='tel' aria-label='Contact Number' class='form-control' maxLength='11' data-fb='Contact Number' required='true'/>
-										<div id='new-shipping-contact-num-invalid-fb' class="invalid-feedback"></div>
+										<div id='new-shipping-contact-num-invalid-fb' class='invalid-feedback'></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
                                         <label for='cs-gender' class='form-label required'>Gender</label>
@@ -209,12 +209,12 @@
                                             <option value='M'>Male</option>
                                             <option value='F'>Female</option>
                                         </select>
-										<div id='new-shipping-gender-invalid-fb' class="invalid-feedback"></div>
+										<div id='new-shipping-gender-invalid-fb' class='invalid-feedback'></div>
                                     </div>
                                     <div class='mb-3 has-validation'>
                                         <label for='ws-address' class='form-label required'>Address</label>
                                         <textarea id='new-shipping-address' class='form-control' rows='3' data-fb='Address' required='true'></textarea>
-										<div id='new-shipping-address-invalid-fb' class="invalid-feedback"></div>
+										<div id='new-shipping-address-invalid-fb' class='invalid-feedback'></div>
                                     </div>
                                 </form>
                             </div>

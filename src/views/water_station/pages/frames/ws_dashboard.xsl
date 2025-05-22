@@ -3,8 +3,10 @@
 	<xsl:output method="html" indent="yes"/>
 	
 	<!--* DATA -->
-	<xsl:variable name="water-station-data" select="document('../../../../data/client/h2go_clients.xml')"/>
-
+	<xsl:variable name='water-station-id' select="document('../../../../../data/system/water_station/ws_data.xml')/water-station-id"/>
+	<xsl:variable name='water-station-data' select="document('../../../../../data/client/h2go_clients.xml')"/>
+	<xsl:variable name='water-station' select='$water-station-data/h2go/water-stations/water-station[@id = $water-station-id]'/>
+	
 	<!--* COMPONENTS -->
 	<xsl:include href='../../../../components/ws_sidebar.xsl'/>
 	<xsl:include href='../../../../components/ws_logout_modal.xsl'/>

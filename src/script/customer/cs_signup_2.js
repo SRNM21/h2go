@@ -54,7 +54,7 @@ signupForm2.on('submit', function(e)
 
     if (areAllInputsValid)
     {
-        window.location.href = '../../customer/pages/cs_p_water_stations.xml?signed-in=true'
+        window.location.href = '../../customer/auth/cs_verification.html'
     }
     
     e.preventDefault()
