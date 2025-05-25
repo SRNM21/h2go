@@ -149,34 +149,41 @@
 									<img src='../../../assets/images/products/product_placeholder.png' alt='Product Image' class='border'/>
 								</div>
 								<div class='form-wrapper'>
-									<form id='add-product-form'>
+									<form id='add-product-form' class='needs-validation' novalidate='true'>
 										<div class='mb-3'>
 											<label for='p-image' class='form-label'>Product Image</label>
 											<input class='form-control' type='file' id='p-image'/>
 										</div>
-										<div class='mb-3'>
-											<label for='p-name' class='form-label'>Name</label>
-											<input type='text' id='p-name' class='form-control'/>
+										<div class='mb-3 has-validation'>
+											<label for='p-name' class='form-label required'>Name</label>
+											<input type='text' id='p-name' class='form-control' data-fb='Name' required='true'/>
+											<div id='p-name-invalid-fb' class='invalid-feedback'></div>
 										</div>
-										<div class='mb-3'>
-											<label for='p-type' class='form-label'>Type</label>
-											<select id='p-type' class='form-select' aria-label='Select Gender'>
-												<option selected='true' disabled='true'>Select Type</option>
+										<div class='mb-3 has-validation'>
+											<label for='p-type' class='form-label required'>Type</label>
+											<select id='p-type' class='form-select' aria-label='Select Gender' data-fb='Type' required='true'>
+												<option selected='true' disabled='true' value=''>Select Type</option>
 												<option value='Purified'>Purified</option>
 												<option value='Alkaline'>Alkaline</option>
+												<option value='Alkaline'>Distilled</option>
+												<option value='Alkaline'>Mineral</option>
 											</select>
+											<div id='p-type-invalid-fb' class='invalid-feedback'></div>
 										</div>
-										<div class='mb-3'>
-											<label for='p-stock' class='form-label'>Stock</label>
-											<input type='number' id='p-stock' class='form-control'/>
+										<div class='mb-3 has-validation'>
+											<label for='p-stock' class='form-label required'>Stock</label>
+											<input type='number' id='p-stock' class='form-control' data-fb='Stock' required='true'/>
+											<div id='p-stock-invalid-fb' class='invalid-feedback'></div>
 										</div>
-										<div class='mb-3'>
-											<label for='p-price' class='form-label'>Price</label>
-											<input type='number' id='p-price' class='form-control'/>
+										<div class='mb-3 has-validation'>
+											<label for='p-price' class='form-label required'>Price</label>
+											<input type='number' id='p-price' class='form-control' data-fb='Prices' required='true'/>
+											<div id='p-price-invalid-fb' class='invalid-feedback'></div>
 										</div>
-										<div class='mb-3'>
-											<label for='p-description' class='form-label'>Description</label>
-											<textarea class='form-control' id='p-description' rows='3'></textarea>
+										<div class='mb-3 has-validation'>
+											<label for='p-description' class='form-label required'>Description</label>
+											<textarea class='form-control' id='p-description' rows='3' data-fb='Description' required='true'></textarea>
+											<div id='p-description-invalid-fb' class='invalid-feedback'></div>
 										</div>
 									</form>
 								</div>
@@ -202,34 +209,41 @@
 									<img src='../../../assets/images/products/product_placeholder.png' alt='Product Image' class='border'/>
 								</div>
 								<div class='form-wrapper'>
-									<form id='add-product-form'>
+									<form id='edit-product-form' class='needs-validation' novalidate='true'>
 										<div class='mb-3'>
 											<label for='e-image' class='form-label'>Product Image</label>
 											<input class='form-control' type='file' id='e-image'/>
 										</div>
-										<div class='mb-3'>
-											<label for='e-name' class='form-label'>Name</label>
-											<input type='text' id='e-name' class='form-control'/>
+										<div class='mb-3 has-validation'>
+											<label for='e-name' class='form-label required'>Name</label>
+											<input type='text' id='e-name' class='form-control' data-fb='Name' required='true'/>
+											<div id='e-name-invalid-fb' class='invalid-feedback'></div>
 										</div>
-										<div class='mb-3'>
-											<label for='e-type' class='form-label'>Type</label>
-											<select id='e-type' class='form-select' aria-label='Select Gender'>
-												<option selected='true' disabled='true'>Select Type</option>
+										<div class='mb-3 has-validation'>
+											<label for='e-type' class='form-label required'>Type</label>
+											<select id='e-type' class='form-select' aria-label='Select Gender' data-fb='Type' required='true'>
+												<option selected='true' disabled='true' value=''>Select Type</option>
 												<option value='Purified'>Purified</option>
 												<option value='Alkaline'>Alkaline</option>
+												<option value='Alkaline'>Distilled</option>
+												<option value='Alkaline'>Mineral</option>
 											</select>
+											<div id='p-type-invalid-fb' class='invalid-feedback'></div>
 										</div>
-										<div class='mb-3'>
-											<label for='e-stock' class='form-label'>Stock</label>
-											<input type='number' id='e-stock' class='form-control'/>
+										<div class='mb-3 has-validation'>
+											<label for='e-stock' class='form-label required'>Stock</label>
+											<input type='number' id='e-stock' class='form-control' data-fb='Stock' required='true'/>
+											<div id='e-stock-invalid-fb' class='invalid-feedback'></div>
 										</div>
-										<div class='mb-3'>
-											<label for='e-price' class='form-label'>Price</label>
-											<input type='number' id='e-price' class='form-control'/>
+										<div class='mb-3 has-validation'>
+											<label for='e-price' class='form-label required'>Price</label>
+											<input type='number' id='e-price' class='form-control' data-fb='Prices' required='true'/>
+											<div id='e-price-invalid-fb' class='invalid-feedback'></div>
 										</div>
-										<div class='mb-3'>
-											<label for='e-description' class='form-label'>Description</label>
-											<textarea class='form-control' id='e-description' rows='3'></textarea>
+										<div class='mb-3 has-validation'>
+											<label for='e-description' class='form-label required'>Description</label>
+											<textarea class='form-control' id='e-description' rows='3' data-fb='Description' required='true'></textarea>
+											<div id='e-description-invalid-fb' class='invalid-feedback'></div>
 										</div>
 									</form>
 								</div>
@@ -258,7 +272,7 @@
 								</div>
 								<div class='view-product-details d-flex flex-column text-center mb-3'>
 									<span class='d-flex fw-semibold justify-content-center'><h4 id='view-product-name'>------</h4><h4 id='view-product-type'>-----</h4></span>
-									<span class='d-flex fw-semibold justify-content-center'>PHP <p id='view-product-price' class='ms-1'> ---,---.--</p></span>
+									<span class='d-flex fw-semibold justify-content-center'><p id='view-product-price' class='ms-1'> ---,---.--</p></span>
 								</div>
 								<div class='view-product-reviews d-flex flex-column align-items-center mb-3'>
 									<div class='d-flex justify-content-center align-items-center text-center'>

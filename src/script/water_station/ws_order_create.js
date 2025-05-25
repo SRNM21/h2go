@@ -344,7 +344,7 @@ customerDetailsForm.on('submit', function(e)
         updateOrderTable()
         notify('success', 'Order is placed successfully.')
 
-        addAddressModal.modal('hide')
+        $('#customer-detail-modal').modal('hide')
     }
 
     e.preventDefault()

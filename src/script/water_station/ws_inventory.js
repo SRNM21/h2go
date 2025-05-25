@@ -1,8 +1,14 @@
 import '../main.js'
 
 import {
-    notify
+    notify,
+    toPeso
 } from '../../util/helper.js'
+
+import { 
+    validateGender, 
+    validateRequired 
+} from '../../util/validation.js'
 
 // #region SORT PRODUCTS
 
@@ -193,38 +199,66 @@ imageFile.on('change', function (e)
     }
 })
 
+addProductForm.on('submit', function (e) 
+{  
+    e.preventDefault()
+
+    const imageInput = $('#p-image')[0].files[0]
+    const nameInput = $('#p-name')
+    const typeInput = $('#p-type')
+    const stockInput = $('#p-stock')
+    const priceInput = $('#p-price')
+    const descriptionInput = $('#p-description')
+
+    const nameFB = $('#p-name-invalid-fb')
+    const typeFB = $('#p-type-invalid-fb')
+    const stockFB = $('#p-stock-invalid-fb')
+    const priceFB = $('#p-price-invalid-fb')
+    const descriptionFB = $('#p-description-invalid-fb')
+
+    const isNameValid = validateRequired(nameInput, nameFB)
+    const isTypeValid = validateGender(typeInput, typeFB)
+    const isStockValid = validateRequired(stockInput, stockFB)
+    const isPriceValid = validateRequired(priceInput, priceFB)
+    const isDescriptionValid = validateRequired(descriptionInput, descriptionFB)
+    const isFormValid = isNameValid && isTypeValid && isStockValid && isPriceValid && isDescriptionValid
+        
+    if (isFormValid)
+    {
+        const imageUrl = imageInput ? URL.createObjectURL(imageInput) : '../../../assets/images/products/product_placeholder.png'
+
+        const productCardHTML = `
+            <div data-bs-target='#view-product-modal' data-bs-toggle='modal' class='card product-card text-center d-flex flex-column align-items-center me-4 mb-4' 
+                data-product='${nameInput.val()}'
+                data-type='${typeInput.val()}'
+                data-stock='${stockInput.val()}'
+                data-price='${priceInput.val()}'
+                data-description='${descriptionInput.val()}'
+                data-review-stars='0'
+                data-review-nums='0'
+                data-image-link='${imageUrl}'
+            >
+                <img src='${imageUrl}' class='card-img-top' alt='${nameInput.val()}'/>
+                <div class='card-body'>
+                    <p class='card-text text-center'>${nameInput.val()}</p>
+                </div>
+            </div>
+        `
+
+        const $productCard = $(productCardHTML)
+        $productCard.on('click', (e) => productView(e))
+        productsWrapper.append($productCard)
+
+        addProductForm[0].reset()
+        addProductModal.modal('toggle')
+        notify('success', 'New Product is Successfully Added!')
+    }
+})
+
 addProductBtn.on('click', function() 
 {
-    const imageInput = $('#p-image')[0].files[0]
-    const nameInput = $('#p-name').val()
-    const typeInput = $('#p-type').val()
-    const stockInput = $('#p-stock').val()
-    const priceInput = $('#p-price').val()
-    const descriptionInput = $('#p-description').val()
-
-    if (!nameInput || !typeInput || !stockInput || !priceInput || !descriptionInput) 
-    {
-        alert('Please fill in all the required fields.')
-        return
-    }
-
-    const imageUrl = imageInput ? URL.createObjectURL(imageInput) : '../../../assets/images/products/product_placeholder.png'
-
-    const productCardHTML = `
-        <div class='card product-card text-center d-flex flex-column align-items-center me-4 mb-4' data-product='${nameInput}'>
-            <img src='${imageUrl}' class='card-img-top' alt='${nameInput}'/>
-            <div class='card-body'>
-                <p class='card-text text-center'>${nameInput}</p>
-            </div>
-        </div>
-    `
-
-    productsWrapper.append(productCardHTML)
-
-    addProductForm[0].reset()
-    addProductModal.modal('toggle')
-
-    notify('New Product is Successfully Added!')
+    $('#p-image')[0].files[0]
+    addProductForm.trigger('submit')
 })
 
 // #endregion ADD PRODUCTS
@@ -258,6 +292,7 @@ const recoverProductReviewStars = $('#recover-product-review-stars')
 const recoverProductReviewStarsIcon = $('#recover-product-review-stars-icon')
 const recoverProductReviewNums = $('#recover-product-review-nums')
 
+var productHolder
 var productImageLink
 var productName
 var productType
@@ -267,12 +302,15 @@ var productDescription
 
 function storeTempData(product)
 {
-    productImageLink = `../../../assets/images/products/${product.data('image-link')}`
+    console.log(product.attr('data-image-link'));
+    
+    productImageLink = `../../../assets/images/products/${product.attr('data-image-link')}`
     productName = product.data('product')
     productType = product.data('type')
     productStock = product.data('stock')
     productPrice = product.data('price')
     productDescription = product.data('description')
+    productHolder = product
 }
 
 function productView(e)
@@ -291,7 +329,7 @@ function productView(e)
     viewProductName.html(productName)
     viewProductType.html(`(${productType})`)
     viewProductStock.html(productStock)
-    viewProductPrice.html((Math.round(productPrice * 100) / 100).toFixed(2))
+    viewProductPrice.html(toPeso(productPrice))
     viewProductDescription.html(productDescription)
     viewProductReviewStars.html(product.data('review-stars'))
     viewProductReviewNums.html(`(${product.data('review-nums')})`)
@@ -306,7 +344,7 @@ function recoverProductView(product)
     recoverProductName.html(productName)
     recoverProductType.html(`(${productType})`)
     recoverProductStock.html(productStock)
-    recoverProductPrice.html((Math.round(productPrice * 100) / 100).toFixed(2))
+    recoverProductPrice.html(toPeso(productPrice))
     recoverProductDescription.html(productDescription)
     recoverProductReviewStars.html(product.data('review-stars'))
     recoverProductReviewNums.html(`(${product.data('review-nums')})`)
@@ -338,32 +376,82 @@ function generateStars(container, stars)
 // #region EDIT PRODUCTS
 
 const editProductModal = $('#edit-product-modal')
+const editProductForm = $('#edit-product-form')
 
 const editProductSubmit = $('#edit-product-submit')
 const editProductBtn = $('#edit-product-btn')
 
-const editProductImage = $('.temp-image-holder > img')
-const editProductName = $('#e-name')
-const editProductType = $('#e-type')
-const editProductStock = $('#e-stock')
-const editProductPrice = $('#e-price')
-const editProductDescription = $('#e-description')
+const editProductImageHolder = $('.temp-image-holder > img')
 
-editProductBtn.on('click', function() 
+const editProductImageInput = $('#e-image')
+const editProductNameInput = $('#e-name')
+const editProductTypeInput = $('#e-type')
+const editProductStockInput = $('#e-stock')
+const editProductPriceInput = $('#e-price')
+const editProductDescriptionInput = $('#e-description')
+
+const editProductNameFB = $('#e-name-invalid-fb')
+const editProductTypeFB = $('#e-type-invalid-fb')
+const editProductStockFB = $('#e-stock-invalid-fb')
+const editProductPriceFB = $('#e-price-invalid-fb')
+const editProductDescriptionFB = $('#e-description-invalid-fb')
+
+editProductImageInput.on('change', function (e) 
 {
-    editProductImage.attr('src', productImageLink)
-    editProductName.val(productName)
-    editProductType.val(productType)
-    editProductStock.val(productStock)
-    editProductPrice.val(productPrice)
-    editProductDescription.val(productDescription)
+    const file = e.target.files[0]
+
+    if (file) 
+    {
+        const reader = new FileReader()
+
+        reader.onload = function (event)
+        {
+            editProductImageHolder.attr('src', event.target.result)
+        }
+
+        reader.readAsDataURL(file)
+    }
 })
 
-editProductSubmit.on('click', function ()
+editProductBtn.on('click', function(e) 
 {
-    editProductModal.modal('toggle')
-    notify(`'${productName}' is Successfully Edited!`)
+    console.log(productImageLink);
+    
+    editProductImageHolder.attr('src', productImageLink)
+    editProductNameInput.val(productName)
+    editProductTypeInput.val(productType)
+    editProductStockInput.val(productStock)
+    editProductPriceInput.val(productPrice)
+    editProductDescriptionInput.val(productDescription)
 })
+
+editProductForm.on('submit', function (e) 
+{  
+    e.preventDefault()
+
+    const isNameValid = validateRequired(editProductNameInput, editProductNameFB)
+    const isTypeValid = validateGender(editProductTypeInput, editProductTypeFB)
+    const isStockValid = validateRequired(editProductStockInput, editProductStockFB)
+    const isPriceValid = validateRequired(editProductPriceInput, editProductPriceFB)
+    const isDescriptionValid = validateRequired(editProductDescriptionInput, editProductDescriptionFB)
+    const isFormValid = isNameValid && isTypeValid && isStockValid && isPriceValid && isDescriptionValid
+        
+    if (isFormValid)
+    {
+        editProductModal.modal('toggle')
+        productHolder.data('product', editProductNameInput.val())
+        productHolder.data('type', editProductTypeInput.val())
+        productHolder.data('stock', editProductStockInput.val())
+        productHolder.data('price', editProductPriceInput.val())
+        productHolder.data('description', editProductDescriptionInput.val())
+        productHolder.attr('data-image-link', editProductImageInput.val())
+        productHolder.find('.card-img-top').attr('src', editProductImageHolder.attr('src'))
+        productHolder.find('.card-text').text(editProductNameInput.val())
+        notify('success', `'${productName}' is Successfully Edited!`)
+    }
+})
+
+editProductSubmit.on('click', () => editProductForm.trigger('submit'))
 
 // #endregion EDIT PRODUCTS
 

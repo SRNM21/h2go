@@ -105,19 +105,24 @@ $(window).on('load', function ()
                         </div>
                     </div>
                 </div>
-                <div class='card-footer bg-white d-flex align-items-center'>
-                    <p class='review-text'>Review</p>
-                    
-                    <div class='ms-auto d-flex align-items-center'>
-                        <div class='remove-review'>
-                            ${remove}
+                ${
+                    orderStatus == 'Completed'
+                    ? `
+                        <div class='card-footer bg-white d-flex align-items-center'>
+                            <p class='review-text'>Review</p>
+                            
+                            <div class='ms-auto d-flex align-items-center'>
+                                <div class='remove-review'>
+                                    ${remove}
+                                </div>
+                                <div class='review-stars p-2 ms-2'>
+                                </div>
+                            </div>
                         </div>
-                        <div class='review-stars p-2 ms-2'>
-                        </div>
-                    </div>
-                </div>
+                    ` 
+                    : ''
+                }
             </div>
-
         `)
         
         orderList.append(productRow)
