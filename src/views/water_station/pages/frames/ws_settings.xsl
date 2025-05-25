@@ -11,6 +11,7 @@
 	<xsl:include href='../../../../components/ws_sidebar.xsl'/>
 	<xsl:include href='../../../../components/ws_logout_modal.xsl'/>
 	<xsl:include href='../../../../components/verification_modal.xsl'/>
+	<xsl:include href='../../../../components/otp_modal.xsl'/>
 	<xsl:include href='../../../../components/toast_container.xsl'/>
 
     <xsl:template match='/'>
@@ -317,6 +318,7 @@
                 </div>
 
 				<xsl:call-template name='verification-modal'/>
+				<xsl:call-template name='otp-modal'/>
 				<xsl:call-template name='log-out-modal'/>
 				<xsl:call-template name='toast-container'/>
 

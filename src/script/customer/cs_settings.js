@@ -44,7 +44,7 @@ var accountFeedbacks = {}
 const cancelEditEmailBtn = $("#cancel-edit-email-btn")
 const editEmailBtn = $('#edit-email-btn')
 
-var CURRENT_EDIT
+var CURRENT
 
 //* ACCOUNT DELETION
 
@@ -70,8 +70,6 @@ const changePasswordBtn = $('#change-password-btn')
 const showPasswordBtn = $('#show-pass-btn')
 const saveChangedPasswordBtn = $('#save-change-pass-btn')
 var show = false
-
-var AUTH_MODE
 
 let qrCode
 const qrCodeHolder = $('#qr-code')
@@ -179,19 +177,19 @@ function getInputAndFeedbacks()
 
 verifyBtn.on('click', function () 
 {  
-    if (CURRENT_EDIT == 'PROFILE SAVE')
+    if (CURRENT == 'PROFILE SAVE')
     {
         savePersonalDetails()
     }
-    else if (CURRENT_EDIT == 'SECURITY SAVE')
+    else if (CURRENT == 'SECURITY SAVE')
     {
         saveSecurity()
     }
-    else if (CURRENT_EDIT == 'CHANGE PASSWORD')
+    else if (CURRENT == 'CHANGE PASSWORD')
     {
         changePasswordModal.modal('show')
     }
-    else if (AUTH_MODE == 'AUTH APP')
+    else if (CURRENT == 'AUTH APP')
     {
         let secretKey = generateSE(32)
 
@@ -210,13 +208,13 @@ verifyBtn.on('click', function ()
         tfaAuthOTPModalIllustration.attr('src', '../../../assets/svg/TwoFactorAuth.svg')
 
     }
-    else if (AUTH_MODE == 'AUTH APP DISABLE')
+    else if (CURRENT == 'AUTH APP DISABLE')
     {
         tfaAuthOTPModal.modal('show')
     }
-    else if (AUTH_MODE == 'AUTH SMS')
+    else if (CURRENT == 'AUTH SMS')
     {
-        AUTH_MODE = 'AUTH SMS VERIFY'
+        CURRENT = 'AUTH SMS VERIFY'
 
         let num = personalDetailsInputs.contactnum.attr('data-initial')
         
@@ -224,7 +222,7 @@ verifyBtn.on('click', function ()
         tfaAuthOTPModalIllustration.attr('src', '../../../assets/svg/MessageOTP.svg')
         tfaAuthOTPModalText.text(`Enter the 6-digit code that was sent to ${ num.substring(0, 2) }******${ num.substring(8, 11) }`)
     }
-    else if (AUTH_MODE == 'AUTH SMS DISABLE')
+    else if (CURRENT == 'AUTH SMS DISABLE')
     {
         console.log('MODAL AUTH SMS')
     }
@@ -232,7 +230,7 @@ verifyBtn.on('click', function ()
 
 confirmDiscardBtn.on('click', () => {
 
-    if (CURRENT_EDIT == 'PROFILE')
+    if (CURRENT == 'PROFILE')
     {
         enableAllPersonalDetails(false)
         editPersonalDetailsBtn.text('Edit Details')
@@ -240,7 +238,7 @@ confirmDiscardBtn.on('click', () => {
         editPersonalDetailsBtn.on('click', () => editBtnFunction())
         Object.values(personalDetailsInputs).forEach(input => input.val(input.attr('data-initial')))
     }
-    else if (CURRENT_EDIT == 'SECURITY')
+    else if (CURRENT == 'SECURITY')
     {
         enableAllSecurity(false)
         editEmailBtn.text('Edit Email')
@@ -300,7 +298,7 @@ personalDetailsForm.on('submit', function(e)
 
     if (allValid)
     {
-        CURRENT_EDIT = 'PROFILE SAVE'
+        CURRENT = 'PROFILE SAVE'
         verifyEmailData.text(accountInputs.email.attr('data-initial'))
         verificationModal.modal('toggle')
     }
@@ -345,7 +343,7 @@ function editBtnFunction()
 {
     enableAllPersonalDetails(true)
 
-    CURRENT_EDIT = 'PROFILE'
+    CURRENT = 'PROFILE'
 
     editPersonalDetailsBtn.text('Save')
     editPersonalDetailsBtn.prop('onclick', null).off('click')
@@ -363,7 +361,7 @@ accountForm.on('submit', function(e)
     
     if (validateEmail(accountInputs.email, accountFeedbacks.email))
     {
-        CURRENT_EDIT = 'SECURITY SAVE'
+        CURRENT = 'SECURITY SAVE'
         verifyEmailData.text(accountInputs.email.attr('data-initial'))
         verificationModal.modal('toggle')
     }
@@ -406,7 +404,7 @@ function editEmailBtnFunction()
 {
     enableAllSecurity(true)
 
-    CURRENT_EDIT = 'SECURITY'
+    CURRENT = 'SECURITY'
 
     editEmailBtn.text('Save')
     editEmailBtn.prop('onclick', null).off('click')
@@ -486,7 +484,7 @@ function confirmDeleteAccountBtnFunction()
 // #region SECURITY
 
 changePasswordBtn.on('click', () => {
-    CURRENT_EDIT = 'CHANGE PASSWORD'
+    CURRENT = 'CHANGE PASSWORD'
     verifyEmailData.text(accountInputs.email.attr('data-initial'))
 })
 
@@ -546,12 +544,12 @@ function tfaAuthModeAppFunction()
 {  
     verificationModal.modal('show')
     verifyEmailData.text(accountInputs.email.val())
-    AUTH_MODE = 'AUTH APP'
+    CURRENT = 'AUTH APP'
 }
 
 function tfaAuthModeSMSFunction()
 {
-    AUTH_MODE = 'AUTH SMS'
+    CURRENT = 'AUTH SMS'
 
     if (tfaAuthModeApp.text() == 'Disable')
     {
@@ -582,7 +580,7 @@ function generateSE(length)
 
 tfaAuthOTPModalSubmitBtn.on('click', function () 
 {  
-    if (AUTH_MODE == 'AUTH APP DISABLE')
+    if (CURRENT == 'AUTH APP DISABLE')
     {
         tfaAuthModeApp.text('Enable')
         tfaAuthModeApp.prop('onclick', null).off('click')
@@ -591,13 +589,13 @@ tfaAuthOTPModalSubmitBtn.on('click', function ()
         tfaAuthOTPModal.modal('hide')
         notify('success', 'Authentication app is disabled successfully.')
     }
-    else if (AUTH_MODE == 'AUTH APP')
+    else if (CURRENT == 'AUTH APP')
     {
         tfaAuthModeApp.text('Disable')
         tfaAuthModeApp.prop('onclick', null).off('click')
         tfaAuthModeApp.on('click', function () 
         {  
-            AUTH_MODE = 'AUTH APP DISABLE'
+            CURRENT = 'AUTH APP DISABLE'
 
             tfaAuthOTPModalText.text('Enter the 6-digit code on your authenticator app')
             tfaAuthOTPModalIllustration.attr('src', '../../../assets/svg/TwoFactorAuth.svg')
@@ -607,9 +605,9 @@ tfaAuthOTPModalSubmitBtn.on('click', function ()
         tfaAuthOTPModal.modal('hide')
         notify('success', 'Authentication app is enabled successfully.')
     }
-    else if (AUTH_MODE == 'AUTH SMS')
+    else if (CURRENT == 'AUTH SMS')
     {
-        AUTH_MODE = 'AUTH SMS VERIFY'
+        CURRENT = 'AUTH SMS VERIFY'
 
         let num = personalDetailsInputs.contactnum.attr('data-initial')
         
@@ -617,7 +615,7 @@ tfaAuthOTPModalSubmitBtn.on('click', function ()
         tfaAuthOTPModalIllustration.attr('src', '../../../assets/svg/MessageOTP.svg')
         tfaAuthOTPModalText.text(`Enter the 6-digit code that was sent to ${ num.substring(0, 2) }******${ num.substring(8, 11) }`)
     }
-    else if (AUTH_MODE == 'AUTH SMS DISABLE')
+    else if (CURRENT == 'AUTH SMS DISABLE')
     {
         tfaAuthModeSms.text('Enable')
         tfaAuthModeSms.prop('onclick', null).off('click')
@@ -626,13 +624,13 @@ tfaAuthOTPModalSubmitBtn.on('click', function ()
         tfaAuthOTPModal.modal('hide')
         notify('success', 'Authentication SMS is disabled successfully.')
     }
-    else if (AUTH_MODE == 'AUTH SMS VERIFY')
+    else if (CURRENT == 'AUTH SMS VERIFY')
     {
         tfaAuthModeSms.text('Disable')
         tfaAuthModeSms.prop('onclick', null).off('click')
         tfaAuthModeSms.on('click', function () 
         {  
-            AUTH_MODE = 'AUTH SMS DISABLE'
+            CURRENT = 'AUTH SMS DISABLE'
             
             let num = personalDetailsInputs.contactnum.attr('data-initial')
         

@@ -16,13 +16,13 @@
     display: none;
 }
 
-.verification-illustration-holder
+.verification-illustration-holder, .otp-illustration-holder
 {
     height: 200px;
     width: 200px;
 }
 
-.verification-illustration-holder > svg
+.verification-illustration-holder > svg, .otp-illustration-holder > svg
 {
     height: 100%;
     width: 100%;
