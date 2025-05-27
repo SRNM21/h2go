@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" vc:minVersion="1.1">
+
+    <xs:simpleType name="SenderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ws"/>
+            <xs:enumeration value="cs"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="WaterType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Purified"/>
+            <xs:enumeration value="Alkaline"/>
+            <xs:enumeration value="Mineral"/>
+            <xs:enumeration value="Distilled"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="h2go">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="water-stations">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="water-station" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="account-details">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="email" type="xs:string"/>
+                                                    <xs:element name="password" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="water-station-details">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="name" type="xs:string"/>
+                                                    <xs:element name="address" type="xs:string"/>
+                                                    <xs:element name="contact-number" type="xs:string"/>
+                                                    <xs:element name="image" type="xs:string"/>
+                                                    <xs:element name="reviews">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="stars" type="xs:decimal"/>
+                                                                <xs:element name="num-of-review" type="xs:integer"/>
+                                                            </xs:sequence>
+                                                            <xs:assert test="stars &gt;= 0 and stars &lt;= 5"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="status" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="inventory">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="product" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="name" type="xs:string"/>
+                                                                <xs:element name="type" type="WaterType"/>
+                                                                <xs:element name="stock" type="xs:integer"/>
+                                                                <xs:element name="price" type="xs:decimal"/>
+                                                                <xs:element name="description" type="xs:string"/>
+                                                                <xs:element name="reviews">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="stars" type="xs:decimal"/>
+                                                                            <xs:element name="number_of_reviews" type="xs:integer"/>
+                                                                        </xs:sequence>
+                                                                        <xs:assert test="stars &gt;= 0 and stars &lt;= 5"/>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="image" type="xs:string"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="id" type="xs:string" use="required"/>
+                                                            <xs:assert test="stock &gt;= 0 and price &gt;= 0"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="orders">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="order" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="customer-id" type="xs:string"/>
+                                                                <xs:element name="time-ordered" type="xs:string"/>
+                                                                <xs:element name="order-type" type="xs:string"/>
+                                                                <xs:element name="ordered-products">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="ordered-product" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="ordered-product-id" type="xs:string"/>
+                                                                                        <xs:element name="price" type="xs:decimal"/>
+                                                                                        <xs:element name="quantity" type="xs:integer"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:assert test="price &gt;= 0 and quantity &gt; 0"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="order-total" type="xs:decimal"/>
+                                                                <xs:element name="mode-of-payment" type="xs:string"/>
+                                                                <xs:element name="status" type="xs:string"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="id" type="xs:string" use="required"/>
+                                                            <xs:assert test="order-total &gt;= 0"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="messages">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="message" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="customer-id" type="xs:string"/>
+                                                                <xs:element name="chats">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="chat" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="content" type="xs:string"/>
+                                                                                        <xs:element name="date-and-time" type="xs:string"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute name="sender" type="SenderType" use="required"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="id" type="xs:string" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="logs">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="log" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="origin" type="xs:string"/>
+                                                                <xs:element name="description" type="xs:string"/>
+                                                                <xs:element name="date-and-time" type="xs:string"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="id" type="xs:string" use="required"/>
+                                                            <xs:attribute name="type" type="xs:string" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="customers">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customer" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="account-details">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="email" type="xs:string"/>
+                                                    <xs:element name="password" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="personal-details">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="name" type="xs:string"/>
+                                                    <xs:element name="gender" type="xs:string"/>
+                                                    <xs:element name="age" type="xs:integer"/>
+                                                    <xs:element name="address" type="xs:string"/>
+                                                    <xs:element name="contact-number" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="cart">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="added-to-cart" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="water-station-id" type="xs:string"/>
+                                                                <xs:element name="products">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="product" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="product-id" type="xs:string"/>
+                                                                                        <xs:element name="quantity" type="xs:integer"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:assert test="quantity &gt; 0"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="orders">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="order" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="water-station-id" type="xs:string"/>
+                                                                <xs:element name="time-ordered" type="xs:string"/>
+                                                                <xs:element name="ordered-products">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="ordered-product" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="ordered-product-id" type="xs:string"/>
+                                                                                        <xs:element name="quantity" type="xs:integer"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:assert test="quantity &gt; 0"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="status" type="xs:string"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="id" type="xs:string" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="messages">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="message" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="water-station-id" type="xs:string"/>
+                                                                <xs:element name="chats">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="chat" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="content" type="xs:string"/>
+                                                                                        <xs:element name="date-and-time" type="xs:string"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute name="sender" type="SenderType" use="required"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="id" type="xs:string" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="notifications">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="notification" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="icon-type" type="xs:string"/>
+                                                                <xs:element name="title" type="xs:string"/>
+                                                                <xs:element name="description" type="xs:string"/>
+                                                                <xs:element name="date-and-time" type="xs:string"/>
+                                                                <xs:element name="read" type="xs:string"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="id" type="xs:string" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
